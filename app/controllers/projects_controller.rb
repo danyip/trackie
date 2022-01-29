@@ -1,8 +1,14 @@
 class ProjectsController < ApplicationController
+  
+  
   def new
+    @project = Project.new
+    @project.tasks.build
   end
 
   def create
+    Project.create! project_params
+    redirect_to projects_path
   end
 
   def index
@@ -14,11 +20,27 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find params[:id]
   end
 
   def update
+    project = Project.find params[:id]
+    project.update project_params
+    redirect_to project_path params[:id]
   end
 
   def destroy
+    Project.destroy params[:id]
+    redirect_to projects_path
   end
+
+  private
+
+  def project_params
+    params
+      .require(:project)
+        .permit(:title, :description, :due_date, :priority, :progress, tasks_attributes: [:title])
+  end 
+
+
 end

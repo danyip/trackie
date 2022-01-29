@@ -1,5 +1,8 @@
 <h1><%= @project.title %></h1>
 
+<%= link_to 'Delete Project', project_path, method: "delete" %>
+<%= link_to 'Edit', edit_project_path %>
+
 <p>Users: 
 <% @project.users.each do |user| %>
         <%= link_to image_tag(user.profile_pic, class: "profile-pic-small"), user_path(user.id), title: "#{user.username}" %>
@@ -14,7 +17,24 @@
 <section>
   Tasks
   <ul>
-    <% @project.tasks.each%>
+    <% @project.tasks.each do |task|%>
+      <li>
+        
+        <%= link_to task.title, task_path(task.id) %>
+        
+        <% if task.user%>
+          <%= link_to image_tag(task.user.profile_pic, class: "profile-pic-small"), user_path(task.user.id), title: "#{task.user.username}" %>
+        <% else%>
+          
+          <%= button_tag 'unassgned'  %>
+        <% end %>
+        
+        <div class="task-detail">
+          <p>Priority: <%= task.priority %>   Status: <%= task.status %>    Est: <%= task.duration %>mins    Due: <%= task.due_date%>    </p>
+          <p><%= task.description %></p>
+        </div>
+      </li>
+    <% end %>
   </ul>
 
 </section>

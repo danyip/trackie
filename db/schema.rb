@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_01_29_045319) do
     t.integer "skill_id"
     t.integer "user_id"
   end
-
+  
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"

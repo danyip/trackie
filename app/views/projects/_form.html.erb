@@ -1,0 +1,36 @@
+<%=form_with model: @project, local: true do |f| %>
+  <div>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: 'title' %>
+  </div>
+  <div>
+  <%= f.label :description %>
+  <%= f.text_field :description, placeholder: 'description' %>
+  </div>
+  <div>
+  <%= f.label :due_date %>
+  <%= f.datetime_local_field :due_date%>
+  </div>
+  <div>
+  <%= f.label :priority %>
+  <%= f.number_field :priority, min: 0, max: 10 %>
+  </div>
+  <div>
+  <%= f.label :user_id %>
+  <%= f.collection_select :user_id, User.all, :id, :username %>
+  </div>
+
+  <div>
+  <h4>Create a new task</h4>
+    <%= f.fields_for :tasks, Task.new do |t|  %>
+      <%= t.label :title %>
+      <%= t.text_field :title %>
+    <% end %>
+  </div>
+
+
+  <%= f.submit %>
+
+
+
+<% end %>

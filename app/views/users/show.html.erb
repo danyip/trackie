@@ -3,6 +3,10 @@
 <%= image_tag @user.profile_pic, class: "profile-pic-large" %>
 
 <p><strong>Username: </strong> <%= @user.username %></p>
+<p>Skills: 
+<%=@user.skills.pluck(:skill_type).join ", "%>
+
+</p>
 <p><strong>Email: </strong> <%= @user.email %></p>
 
 <section class="list-container">
