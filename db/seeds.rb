@@ -73,7 +73,7 @@ Project.destroy_all
   p1 = Project.create!(
     title: 'Project_1',
     description: 'Build a full-stack application using Rails.',
-    due_date: '2022/02/04',
+    due_date: '2022/02/04 09:00',
     priority: 1,
     progress: 20
   )
@@ -131,9 +131,10 @@ Task.destroy_all
     title: 'Setup the project files',
     description: 'Create a git repo, make the Rails project, initialize the DB.',
     duration: '60',
-    due_date: '2022/01/29',
+    due_date: '2022/01/29  09:00',
     status: 1,
     priority: 1,
+    user_id: u1.id,
     project_id: p1.id 
   )
 
@@ -146,6 +147,7 @@ Task.destroy_all
     due_date: '2022/02/04',
     status: 1,
     priority: 1,
+    user_id: u2.id,
     project_id: p1.id 
   )
   
@@ -157,6 +159,7 @@ Task.destroy_all
     due_date: '2022/02/04',
     status: 1,
     priority: 1,
+    user_id: u3.id,
     project_id: p1.id 
   )
   
@@ -167,6 +170,7 @@ Task.destroy_all
     duration: '10000',
     status: 5,
     priority: 1,
+    user_id: u4.id,
     project_id: p2.id 
   )
   
@@ -178,6 +182,7 @@ Task.destroy_all
     due_date: '2023/04/10',
     status: 5,
     priority: 1,
+    user_id: u1.id,
     project_id: p3.id 
   )
   
@@ -189,6 +194,7 @@ Task.destroy_all
     due_date: '2024/04/10',
     status: 5,
     priority: 2,
+    user_id: u3.id,
     project_id: p3.id 
   )
   
@@ -200,6 +206,7 @@ Task.destroy_all
     due_date: '2025/04/10',
     status: 5,
     priority: 3,
+    user_id: u4.id,
     project_id: p3.id 
   )
   
@@ -211,6 +218,7 @@ Task.destroy_all
     due_date: '2022/02/05',
     status: 5,
     priority: 1,
+    user_id: u1.id,
     project_id: p4.id 
   )
   
@@ -222,6 +230,7 @@ Task.destroy_all
     due_date: '2022/02/04',
     status: 5,
     priority: 2,
+    user_id: u2.id,
     project_id: p5.id 
   )
   
@@ -233,6 +242,7 @@ Task.destroy_all
     due_date: '2022/02/04',
     status: 5,
     priority: 1,
+    user_id: u2.id,
     project_id: p5.id 
   )
   
@@ -263,16 +273,10 @@ Task.destroy_all
   puts "#{Task.pluck(:title).join ', '}".yellow
   puts 
 
-  t1.users << u1
-  t2.users << u2
-  t3.users << u3
-  t4.users << u4
-  t5.users << u1
-  t6.users << u3
-  t7.users << u4
-  t8.users << u1
-  t9.users << u2
-  t10.users << u2
-  t11.users << u3
-  t12.users << u4
+  
+ 
+  
+
+  
+
 

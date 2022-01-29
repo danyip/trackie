@@ -6,9 +6,11 @@ class ProjectsController < ApplicationController
   end
 
   def index
+    @projects = Project.order "priority"
   end
 
   def show
+    @project = Project.find params[:id]
   end
 
   def edit

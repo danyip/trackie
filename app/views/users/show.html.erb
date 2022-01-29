@@ -1,2 +1,29 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2><%= @user.first_name%> <%= @user.last_name%> </h2>
+
+<%= image_tag @user.profile_pic, class: "profile-pic-large" %>
+
+<p><strong>Username: </strong> <%= @user.username %></p>
+<p><strong>Email: </strong> <%= @user.email %></p>
+
+<section class="list-container">
+  <h3><%= @user.username %>'s projects</h3>
+  <ul>
+    <% @user.projects.each do |project| %>
+      <li>
+        <%= link_to "#{project.title}", project_path(project.id) %>
+        
+        <ul>
+        <% project.tasks.each do |task|%>
+          <% if task.user_id == @user.id%>
+            <li>
+              <%= link_to "#{task.title}", task_path(task.id) %>
+            </li>
+          <% end %>
+        <% end %>
+        </ul>
+
+      </li>    
+    <% end %>
+  </ul>
+</section>
+

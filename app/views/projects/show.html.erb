@@ -1,2 +1,20 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<h1><%= @project.title %></h1>
+
+<p>Users: 
+<% @project.users.each do |user| %>
+        <%= link_to image_tag(user.profile_pic, class: "profile-pic-small"), user_path(user.id), title: "#{user.username}" %>
+      <% end %>
+</p>
+<p>Description: <%= @project.description %></p>
+<p>Due Date: <%= @project.due_date %></p>
+<p>Due In: <%= ((((@project.due_date - Time.now)/60)/60)/24).round 2  %> days</p>
+<p>Priority: <%= @project.priority %></p>
+<p>Progress: <%= @project.progress %>%</p>
+
+<section>
+  Tasks
+  <ul>
+    <% @project.tasks.each%>
+  </ul>
+
+</section>

@@ -1,0 +1,30 @@
+:root {
+  font-family: Helvetica, sans-serif;
+}
+
+.profile-pic-small {
+  height: 2em;
+  border-radius: 0.3em;
+  vertical-align: middle;
+}
+
+.profile-pic-large {
+  height: 12em;
+  border-radius: 0.3em;
+  vertical-align: middle;
+}
+
+li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+
+}
+
+ul {
+  padding: 0;
+}
+
+li > ul > li {
+  font-size: 0.8rem;
+  margin-left: 1rem
+}

@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.order :first_name
   end
 
   def show
+    @user = User.find params[:id]
   end
 
   def edit
@@ -19,4 +21,5 @@ class UsersController < ApplicationController
 
   def destroy
   end
+  
 end
