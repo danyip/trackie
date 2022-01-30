@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     project = Project.create! project_params
     users = User.find project_user_params[:user_ids]
     project.users << users
-    redirect_to projects_path
+    redirect_to project_path project.id
   end
 
   def index
@@ -27,7 +27,10 @@ class ProjectsController < ApplicationController
 
   def update
     project = Project.find params[:id]
+    project.users.clear
+    users = User.find project_user_params[:user_ids]
     project.update project_params
+    project.users << users
     redirect_to project_path params[:id]
   end
 
