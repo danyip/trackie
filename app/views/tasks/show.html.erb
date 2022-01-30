@@ -1,2 +1,23 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1>
+<%= link_to "#{@project.title}", project_path(@project.id) %>
+</h1>
+<h2><%= @task.title %></h2>
+<%= link_to 'Edit', edit_task_path(@task.id) %>
+<%= link_to 'Delete', task_path(@task.id), method: "delete" %>
+
+<div>
+<div>
+  <% if @task.user %>
+    <%= link_to image_tag(@task.user.profile_pic, class: "profile-pic-small"), user_path(@task.user.id), title: "#{@task.user.username}" %>
+  <% else %>
+    <%= button_tag 'unassgned'  %>
+  <% end %>
+  </div>
+  <div>Priority: <%= @task.priority %></div>
+  <div>Duration: <%= @task.duration %>mins</div>
+  <div>Due: <%= @task.due_date %></div>
+  <div>Status: <%= @task.status %></div>
+</div>
+
+<p><%= @task.description %></p>
+

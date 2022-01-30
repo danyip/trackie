@@ -7,7 +7,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    Project.create! project_params
+    project = Project.create! project_params
+    users = User.find project_user_params[:user_ids]
+    project.users << users
     redirect_to projects_path
   end
 
@@ -41,6 +43,11 @@ class ProjectsController < ApplicationController
       .require(:project)
         .permit(:title, :description, :due_date, :priority, :progress, tasks_attributes: [:title])
   end 
+
+  def project_user_params
+  params.require(:project).permit(:user_ids => [])
+  end
+
 
 
 end

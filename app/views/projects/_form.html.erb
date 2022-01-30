@@ -12,12 +12,19 @@
   <%= f.datetime_local_field :due_date%>
   </div>
   <div>
-  <%= f.label :priority %>
-  <%= f.number_field :priority, min: 0, max: 10 %>
+    <%= f.label :priority %>
+    <%= f.label :priority, 'Urgent', :value => 1 %>
+    <%= f.radio_button :priority, 1 %>
+    <%= f.label :priority, 'High', :value => 2 %>
+    <%= f.radio_button :priority, 2 %>
+    <%= f.label :priority, 'Medium', :value => 3 %>
+    <%= f.radio_button :priority, 3 %>
+    <%= f.label :priority, 'Low', :value => 4 %>
+    <%= f.radio_button :priority, 4 %>
   </div>
   <div>
   <%= f.label :user_id %>
-  <%= f.collection_select :user_id, User.all, :id, :username %>
+  <%= f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false %>
   </div>
 
   <div>

@@ -19,6 +19,8 @@
   <ul>
     <% @project.tasks.each do |task|%>
       <li>
+
+        <%= link_to 'Task', task_path(task.id) %>
         
         <%= link_to task.title, task_path(task.id) %>
         
