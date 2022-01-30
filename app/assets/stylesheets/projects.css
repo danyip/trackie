@@ -1,13 +1,14 @@
+:root{
+  --main-width: 95vw
+}
+
 .page-wrapper {
   /* background-color: green; */
+  width: var(--main-width);
+  margin: 0 auto;
 }
 /* Project Heading */
 .project-header-container {
-  /* background-color: hotpink; */
-  width: 95%;
-  margin: 0 auto;
-  /* border: 2px solid black;
-  border-radius: 8px; */
   display: grid;
   grid-template-areas: 
   "title title delete"
@@ -69,7 +70,67 @@
 
 /* Project Descritpion  */
 .project-description {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
 
-  width: 90%;
-  margin: 0 auto;
+
+/* Project tasks */
+.tasks-container {
+  /* border: 1px solid rgb(230, 0, 255); */
+}
+.tasks-container h3 {
+  margin: 0;
+}
+
+.tasks-container ul {
+  margin: 0;
+  height: 50vh;
+  /* border: 1px solid red; */
+  overflow: scroll  ;
+}
+.tasks-container li {
+  border: 3px solid green;
+  padding: 3px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.task-title {
+  font-size: 1.5rem;
+}
+
+.status {
+  border-radius: 8px;
+  font-size: 0.8rem;
+  width: 5rem;
+  text-align: center;
+  border: 2px solid black;
+  display: inline-block;
+  position: absolute;
+  right: 3px;
+}
+
+.complete {
+  background-color: green;
+}
+.in-progress {
+  background-color: rgb(0, 157, 255);
+}
+.on-hold {
+  background-color: orange;
+}
+.assigned {
+  background-color: purple;
+}
+.unassigned {
+  background-color: red;
+}
+
+.task-description {
+  margin: 0;
+}
+
+.task-due {
+  font-size: 0.7rem;
 }

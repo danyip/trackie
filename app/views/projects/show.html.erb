@@ -29,36 +29,45 @@
 
     <%= link_to 'Delete', project_path, method: "delete", class: "delete-link" %>
   </div>
-  <hr>
+
   <p class="project-description"><%= @project.description %></p>
-  <hr>
 
 
-
-  <section>
-    Tasks
+  <section class="tasks-container">
+    <h3>Tasks</h3>
     <ul>
-      <% @project.tasks.each do |task|%>
+      <% @project.tasks.order("priority").each do |task|%>
         <li>
-
-          <%= link_to 'Task', task_path(task.id) %>
-          
-          <%= link_to task.title, task_path(task.id) %>
-          
           <% if task.user%>
             <%= link_to image_tag(task.user.profile_pic, class: "profile-pic-small"), user_path(task.user.id), title: "#{task.user.username}" %>
-          <% else%>
-            
-            <%= button_tag 'unassgned'  %>
           <% end %>
           
-          <div class="task-detail">
-            <p>Priority: <%= task.priority %>   Status: <%= task.status %>    Est: <%= task.duration %>mins    Due: <%= task.due_date%>    </p>
-            <p><%= task.description %></p>
-          </div>
+          <%= link_to task.title, task_path(task.id), class: "task-title" %>
+          <% case task.status %>
+          <% when 1 %>
+            <div class="status complete">Complete</div>
+          <% when 2 %>
+            <div class="status in-progress">In Progress</div>
+          <% when 3 %>
+            <div class="status on-hold">On Hold</div>
+          <% when 4 %>
+            <div class="status assigned">Assigned</div>
+          <% when 5 %>
+            <div class="status unassigned">Unassigned</div>
+          <% end %>
+          <% if task.due_date%>
+            <div class="task-due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <% end%>
+
+          <p class="task-description"><%= task.description %></p>      
+
         </li>
       <% end %>
     </ul>
 
   </section>
 </div>
+
+
+      
+
