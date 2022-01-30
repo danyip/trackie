@@ -125,7 +125,6 @@ Task.destroy_all
   t1 = Task.create!(
     title: 'Setup the project files',
     description: 'Create a git repo, make the Rails project, initialize the DB.',
-    duration: '60',
     due_date: '2022/01/29  09:00',
     status: 1,
     priority: 1,
@@ -138,7 +137,6 @@ Task.destroy_all
   t2 = Task.create!(
     title: 'Help Dan fix everything',
     description: 'Provide all the help to Dan, for every bug and issue he creates',
-    duration: '600',
     due_date: '2022/02/04',
     status: 1,
     priority: 1,
@@ -150,7 +148,6 @@ Task.destroy_all
   t3 = Task.create!(
     title: 'Provide Feedback',
     description: "Tell Dan all the mistake's hes making with his project. Ideally before he makes them.",
-    duration: '5',
     due_date: '2022/02/04',
     status: 3,
     priority: 1,
@@ -162,7 +159,6 @@ Task.destroy_all
   t4 = Task.create!(
     title: 'Play the game',
     description: "Play tic-tac-toe until you beat the AI",
-    duration: '10000',
     status: 2,
     priority: 1,
     user_id: u4.id,
@@ -173,7 +169,6 @@ Task.destroy_all
   t5 = Task.create!(
     title: 'Psudo Code',
     description: "Think through the solution and write some psudo code.",
-    duration: '240',
     due_date: '2023/04/10',
     status: 3,
     priority: 1,
@@ -185,7 +180,6 @@ Task.destroy_all
   t6 = Task.create!(
     title: 'Write the program',
     description: "Bang out a solution to HARDCORE MTA",
-    duration: '580',
     due_date: '2024/04/10',
     status: 4,
     priority: 2,
@@ -197,7 +191,6 @@ Task.destroy_all
   t7 = Task.create!(
     title: 'Refactor',
     description: "As the title suggests, refactor the solution for readability",
-    duration: '60',
     due_date: '2025/04/10',
     status: 4,
     priority: 3,
@@ -209,7 +202,6 @@ Task.destroy_all
   t8 = Task.create!(
     title: 'Enjoy watching TV',
     description: "Binge some tv shows infront of the TV while admiring the furniture",
-    duration: '1440',
     due_date: '2022/02/05',
     status: 4,
     priority: 1,
@@ -221,7 +213,6 @@ Task.destroy_all
   t9 = Task.create!(
     title: 'Food',
     description: "Prep all the food for the party",
-    duration: '60',
     due_date: '2022/02/04',
     status: 4,
     priority: 2,
@@ -233,7 +224,6 @@ Task.destroy_all
   t10 = Task.create!(
     title: 'Drinks',
     description: "Beers, beers, beers",
-    duration: '60',
     due_date: '2022/02/04',
     status: 4,
     priority: 1,
@@ -245,7 +235,6 @@ Task.destroy_all
   t11 = Task.create!(
     title: 'Music',
     description: "Make a party playlist",
-    duration: '60',
     due_date: '2022/02/04',
     status: 4,
     priority: 3,
@@ -256,7 +245,6 @@ Task.destroy_all
   t12 = Task.create!(
     title: 'Pyro',
     description: "Organise a sweet private fireworks show",
-    duration: '60',
     due_date: '2022/02/04',
     status: 4,
     priority: 4,
