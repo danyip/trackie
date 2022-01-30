@@ -6,5 +6,11 @@ class Project < ApplicationRecord
 
   accepts_nested_attributes_for :tasks, reject_if: :all_blank
 
+  # def percentage_tasks_complete
+  #   total_tasks = project.tasks
+  #   complete_tasks = project.tasks.
+
+    
+  # end
   
 end

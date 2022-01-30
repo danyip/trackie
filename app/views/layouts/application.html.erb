@@ -4,17 +4,32 @@
     <title>Trackie</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <nav>
-    <%= link_to 'Projects', projects_path %>
-    <%= link_to 'Tasks', tasks_path %>
-    <%= link_to 'Users', users_path %>
-    </nav>
+
+    <header>
+      <a href=<%= projects_path %> class="logo">trackie</a>
+      <a href=<%= users_path %> class="user-link"><%= image_tag User.first.profile_pic, class: "profile-pic-med " %></a>
+    </header>
+
     <%= yield %>
+  
+    <footer>
+      <nav>
+        <%= link_to (image_tag 'project_icon', class: "nav-link-img"), projects_path %>
+        <%= link_to (image_tag 'task_icon', class: "nav-link-img"), tasks_path %>
+        <%= link_to 'users', users_path %>
+        <%= link_to 'skills', skills_path %>
+      </nav>
+    </footer>
   </body>
 </html>
+
+<%=  %>

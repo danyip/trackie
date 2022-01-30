@@ -19,6 +19,12 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find params[:id]
+    
+    num_all_tasks = @project.tasks.count.to_f
+    complete_tasks = @project.tasks.select {| task | task.status == 1 }
+    num_complete_tasks = complete_tasks.count.to_f
+    @percentage_done = ((num_complete_tasks / num_all_tasks)*100).round
+
   end
 
   def edit
@@ -27,10 +33,15 @@ class ProjectsController < ApplicationController
 
   def update
     project = Project.find params[:id]
-    project.users.clear
-    users = User.find project_user_params[:user_ids]
     project.update project_params
-    project.users << users
+    
+    project.users.clear
+    
+    if project_user_params[:user_ids]
+      users = User.find project_user_params[:user_ids]
+      project.users << users
+    end
+
     redirect_to project_path params[:id]
   end
 
