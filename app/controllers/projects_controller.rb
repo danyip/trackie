@@ -3,27 +3,34 @@ class ProjectsController < ApplicationController
   # before_action :check_if_logged_in
 
   def new
-    @project = Project.new
+    @project = Project.new 
     @project.tasks.build
   end
 
   def create
     @project = Project.create project_params
 
-    if @project.persisted?
-      redirect_to project_path @project.id
+    if @project.persisted? # if the project creation was sucessful
       
-      if project_user_params[:user_ids]
-        users = User.find project_user_params[:user_ids]
-    
-        @project.users << users
-      else
-        @project.users << @current_user
-      end
+      @project.tasks.each do |task| # Run the update_task_status method on each task in the project
+        task.update_task_status
+      end #end do
+      
 
-    else
-      render :new
-    end
+      if project_user_params[:user_ids] # if some users have been assigned to the project
+        users = User.find project_user_params[:user_ids] # find them
+        @project.users << users # and push them into the projects_users table
+      else
+        @project.users << @current_user # otherwise just push the current user
+      end # if-else user assignment
+
+      redirect_to project_path @project.id # redirect to the new project
+
+    else # if the proejct creation was unsucessful
+
+      render :new # go back to the new form
+
+    end # if-else project.persisted?
   end
 
   def index
