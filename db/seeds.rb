@@ -88,14 +88,14 @@ Project.destroy_all
     title: 'Hardcore MTA',
     description: 'Do an MTA in ruby with more then one interchange. Find the shortest route from station to station.',
     due_date: '2025/12/25',
-    priority: 8
+    priority: 2
   )
 
   p4 = Project.create!(
     title: 'TV unit',
     description: 'Build a TV unit for the new house',
     due_date: '2021/09/10',
-    priority: 5
+    priority: 3
   )
 
   p5 = Project.create!(
@@ -181,7 +181,7 @@ Task.destroy_all
     title: 'Write the program',
     description: "Bang out a solution to HARDCORE MTA",
     due_date: '2024/04/10',
-    status: 4,
+    status: 2,
     priority: 2,
     user_id: u3.id,
     project_id: p3.id 
@@ -192,7 +192,7 @@ Task.destroy_all
     title: 'Refactor',
     description: "As the title suggests, refactor the solution for readability",
     due_date: '2025/04/10',
-    status: 4,
+    status: 2,
     priority: 3,
     user_id: u4.id,
     project_id: p3.id 
@@ -203,7 +203,7 @@ Task.destroy_all
     title: 'Enjoy watching TV',
     description: "Binge some tv shows infront of the TV while admiring the furniture",
     due_date: '2022/02/05',
-    status: 4,
+    status: 2,
     priority: 1,
     user_id: u1.id,
     project_id: p4.id 
@@ -214,7 +214,7 @@ Task.destroy_all
     title: 'Food',
     description: "Prep all the food for the party",
     due_date: '2022/02/04',
-    status: 4,
+    status: 2,
     priority: 2,
     user_id: u2.id,
     project_id: p5.id 
@@ -225,7 +225,7 @@ Task.destroy_all
     title: 'Drinks',
     description: "Beers, beers, beers",
     due_date: '2022/02/04',
-    status: 4,
+    status: 2,
     priority: 1,
     user_id: u2.id,
     project_id: p5.id 
@@ -236,7 +236,7 @@ Task.destroy_all
     title: 'Music',
     description: "Make a party playlist",
     due_date: '2022/02/04',
-    status: 4,
+    status: 2,
     priority: 3,
     project_id: p5.id 
   )
@@ -246,8 +246,8 @@ Task.destroy_all
     title: 'Pyro',
     description: "Organise a sweet private fireworks show",
     due_date: '2022/02/04',
-    status: 4,
-    priority: 4,
+    status: 2,
+    priority: 2,
     project_id: p5.id 
   )
   
