@@ -42,12 +42,16 @@
   </div>
 
   <div>
-    <%= f.label :skills %>
-    <%= f.collection_check_boxes :skills, Skill.all, :id, :skill_type, include_hidden: false %>
+  Select some skills: <br>
+    <%= f.collection_check_boxes(:skills, Skill.all, :id, :skill_type, include_hidden: false) do |b| %>
+      <%= b.check_box(checked: @skill_ids.include?(b.value)) %>
+      <%= b.label%> 
+    <% end %>
   </div>
-
-
+  <br>
+  
   <div>
+  or make a new one:
     <%= f.fields_for :skills, Skill.new do |s| %>
       <div>
         <%= s.label :skill_type %>

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.skills.build
+    @skill_ids = @user.skills.pluck :id
   end
 
   def create
@@ -37,9 +38,28 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find params[:id]
+    @skill_ids = @user.skills.pluck :id
   end
 
   def update
+    @user = User.find params[:id]
+
+      @user.skills.clear
+
+    if @user.update user_params
+      
+      if user_skill_params[:skills].present?
+        skills = Skill.find user_skill_params[:skills]
+        @user.skills << skills
+      end
+
+      redirect_to user_path params[:id]
+
+    else
+
+      render :edit
+      
+    end
   end
 
   def destroy
