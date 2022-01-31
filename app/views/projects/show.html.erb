@@ -4,6 +4,7 @@
   <div class="project-header-container">
     <h1><%=  link_to @project.title, edit_project_path%></h1>
     
+    <% if @project.priority%>
     <div class="priority-wrapper">
       <span>Priority: </span>
       <% case @project.priority %>
@@ -17,9 +18,15 @@
           <div class="priority low">LOW</div>
       <% end %>
     </div>
-    <div class="due">Due: <%= ((((@project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
-    
-    <div class="progress">Progress: <%= @percentage_done %>%</div>
+    <% end %>
+
+    <% if @project.due_date%>
+      <div class="due">Due: <%= ((((@project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+    <% end %>
+
+    <% if @percentage_done %>
+      <div class="progress">Progress: <%= @percentage_done %>%</div>
+    <% end %>
 
     <div class="project-user-container">
       <% @project.users.each do |user| %>
@@ -41,6 +48,10 @@
           <% if task.user%>
             <%= link_to image_tag(task.user.profile_pic, class: "profile-pic-small"), user_path(task.user.id), title: "#{task.user.username}" %>
           <% end %>
+
+          <% if @current_user.present? && task.user_id == @current_user.id %>
+            <%= link_to 'EDIT', edit_task_path(task.id) %>
+          <% end%>
           
           <%= link_to task.title, task_path(task.id), class: "task-title" %>
           <% case task.status %>

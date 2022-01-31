@@ -1,2 +1,13 @@
-<h1>Skills#index</h1>
-<p>Find me in app/views/skills/index.html.erb</p>
+<div class="page-wrapper">
+  <h1>All the Skills</h1>
+
+  <ul>
+    <% @skills.each do |skill|%>
+      <li>
+        <%= link_to skill.skill_type, skill_path(skill.id) %>
+      </li>
+
+    <% end %>
+  </ul>
+
+</div>

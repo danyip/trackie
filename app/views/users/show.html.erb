@@ -2,6 +2,8 @@
 
 <h2><%= @user.first_name%> <%= @user.last_name%> </h2>
 
+<%= link_to 'Delete User', user_path(@user.id), method: 'delete' %>
+
 <%= image_tag @user.profile_pic, class: "profile-pic-large" %>
 
 <p><strong>Username: </strong> <%= @user.username %></p>

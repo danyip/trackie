@@ -1,37 +1,100 @@
+
+<%  if @project.errors.any? %>
+  <ul>
+  <% @project.errors.full_messages.each do |e|%>
+  <li>
+    <%= e %>
+  </li>
+  <% end %>
+  </ul>
+
+<% end%>
+
 <%=form_with model: @project, local: true do |f| %>
   <div>
-  <%= f.label :title %>
-  <%= f.text_field :title, placeholder: 'title' %>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: 'title' %>
   </div>
   <div>
-  <%= f.label :description %>
-  <%= f.text_field :description, placeholder: 'description' %>
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: 'description' %>
   </div>
   <div>
-  <%= f.label :due_date %>
-  <%= f.datetime_local_field :due_date%>
+    <%= f.label :due_date %>
+    <%= f.datetime_local_field :due_date%>
   </div>
   <div>
     <%= f.label :priority %>
-    <%= f.label :priority, 'Urgent', :value => 1 %>
+    <br>
     <%= f.radio_button :priority, 1 %>
-    <%= f.label :priority, 'High', :value => 2 %>
+    <%= f.label :priority, 'Urgent', :value => 1 %>
+    <br>
     <%= f.radio_button :priority, 2 %>
-    <%= f.label :priority, 'Medium', :value => 3 %>
+    <%= f.label :priority, 'High', :value => 2 %>
+    <br>
     <%= f.radio_button :priority, 3 %>
-    <%= f.label :priority, 'Low', :value => 4 %>
+    <%= f.label :priority, 'Medium', :value => 3 %>
+    <br>
     <%= f.radio_button :priority, 4 %>
+    <%= f.label :priority, 'Low', :value => 4 %>
   </div>
   <div>
-  <%= f.label :user_id %>
-  <%= f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false %>
+    <%= f.label :user_id %>
+    <%= f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false %>
   </div>
 
   <div>
-  <h4>Create a new task</h4>
+    <h4>Create a new task</h4>
     <%= f.fields_for :tasks, Task.new do |t|  %>
-      <%= t.label :title %>
-      <%= t.text_field :title %>
+      <div>
+        <%= t.label :title %>
+        <%= t.text_field :title %>
+      </div>
+      <div>
+        <%= t.label :user_id %>
+        <%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %>
+      </div>
+      <div>
+        <%= t.label :description %>
+        <%= t.text_area :description %>
+      </div>
+      <div>
+        <%= t.label :due_date %>
+        <%= t.datetime_local_field :due_date %>
+      </div>
+      <div>
+        <%= t.label :status %>
+        <br>
+        <%= t.radio_button :status, 1 %>
+        <%= t.label :status, 'Complete', :value => 1 %>
+        <br>
+        <%= t.radio_button :status, 2 %>
+        <%= t.label :status, 'In Progress', :value => 2 %>
+        <br>
+        <%= t.radio_button :status, 3 %>
+        <%= t.label :status, 'On Hold', :value => 3 %>
+        <br>
+        <%= t.radio_button :status, 4 %>
+        <%= t.label :status, 'Assigned', :value => 4 %>
+        <br>
+        <%= t.radio_button :status, 5 %>
+        <%= t.label :status, 'Unassigned', :value => 5 %>
+      </div>
+      <div>
+        <%= t.label :priority %>
+        <br>
+        <%= t.radio_button :priority, 1 %>
+        <%= t.label :priority, 'Urgent', :value => 1 %>
+        <br>
+        <%= t.radio_button :priority, 2 %>
+        <%= t.label :priority, 'High', :value => 2 %>
+        <br>
+        <%= t.radio_button :priority, 3 %>
+        <%= t.label :priority, 'Medium', :value => 3 %>
+        <br>
+        <%= t.radio_button :priority, 4 %>
+        <%= t.label :priority, 'Low', :value => 4 %>
+      </div>
     <% end %>
   </div>
 

@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+  
+  # before_action :check_if_logged_in
+
   def new
   end
 
@@ -16,12 +19,26 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find params[:id]
+
+    # redirect_to login_path unless @task.user_id == @current_user.id
+
   end
 
   def update
-    task = Task.find params[:id]
-    task.update task_params
-    redirect_to task_path params[:id]
+
+    @task = Task.find params[:id]
+
+    # if @task.user_id != @current_user.id
+    #   redirect_to login_path
+    #   return 
+    # end 
+
+    if @task.update task_params
+      redirect_to task_path @task
+    else
+      render :edit
+    end 
+
   end
 
   def destroy
@@ -36,7 +53,7 @@ class TasksController < ApplicationController
   def task_params
     params
       .require(:task)
-        .permit(:title, :description, :due_date, :status, :priority, :duration, :project_id, :user_id)
+        .permit(:title, :description, :due_date, :status, :priority, :project_id, :user_id)
   end 
 
 

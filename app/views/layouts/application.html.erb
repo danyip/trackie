@@ -16,12 +16,21 @@
 
     <header>
       <a href=<%= projects_path %> class="logo">trackie</a>
-      <a href=<%= users_path %> class="user-link"><%= image_tag User.first.profile_pic, class: "profile-pic-med " %></a>
+
+      <% if @current_user.present?%>
+        <a href=<%= users_path %> class="user-link"><%= image_tag @current_user.profile_pic, class: "profile-pic-med " %></a>
+        <%= link_to 'Logout', login_path, method: 'delete' %>
+        <% else %>
+        <%= link_to 'Login', login_path %>
+        <%= link_to 'Sign Up', new_user_path %>
+        
+      <% end%>
     </header>
 
     <%= yield %>
   
     <footer>
+
       <nav>
         <%= link_to (image_tag 'project_icon', class: "nav-link-img"), projects_path %>
         <%= link_to (image_tag 'task_icon', class: "nav-link-img"), tasks_path %>

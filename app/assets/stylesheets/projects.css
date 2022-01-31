@@ -2,6 +2,11 @@
   --main-width: 95vw
 }
 
+.field_with_errors input {
+  background-color: red;
+
+}
+
 .page-wrapper {
   /* background-color: green; */
   width: var(--main-width);

@@ -5,9 +5,14 @@ class User < ApplicationRecord
 
   has_many :tasks
 
+  accepts_nested_attributes_for :skills, reject_if: :all_blank
+
 
   has_secure_password
+  
   validates :email, presence: true, uniqueness: true
   validates :username, uniqueness: true
+  
+  
 
 end

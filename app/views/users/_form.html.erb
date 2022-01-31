@@ -1,0 +1,64 @@
+<%  if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |e|%>
+  <li>
+    <%= e %>
+  </li>
+  <% end %>
+  </ul>
+
+<% end%>
+
+<%= form_with model: @user, local: true do |f|  %>
+  
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, placeholder: 'first name' %>
+  </div>
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, placeholder: 'last name' %>
+  </div>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, placeholder: 'username' %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: 'email' %>
+  </div>
+  <div>
+    <%= f.label :profile_pic %>
+    <%= f.text_field :profile_pic, placeholder: 'URL to profile pic' %>
+  </div>
+  
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.label :skills %>
+    <%= f.collection_check_boxes :skills, Skill.all, :id, :skill_type, include_hidden: false %>
+  </div>
+
+
+  <div>
+    <%= f.fields_for :skills, Skill.new do |s| %>
+      <div>
+        <%= s.label :skill_type %>
+        <%= s.text_field :skill_type %>
+      </div>
+    <% end %>
+  
+  </div>
+
+
+  <%= f.submit  %>
+
+<% end %>
+
