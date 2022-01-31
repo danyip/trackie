@@ -7,5 +7,7 @@ class Project < ApplicationRecord
 
   validates :title, length: {minimum: 2}
 
+  enum priority: [:Urgent, :High, :Medium, :Low]
+
   
 end

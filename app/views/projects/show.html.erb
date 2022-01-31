@@ -7,16 +7,7 @@
     <% if @project.priority%>
     <div class="priority-wrapper">
       <span>Priority: </span>
-      <% case @project.priority %>
-        <% when 1 %>
-          <div class="priority urgent">URGENT</div>
-        <% when 2 %>
-          <div class="priority high">HIGH</div>
-        <% when 3 %>
-          <div class="priority medium">MEDIUM</div>
-        <% when 4 %>
-          <div class="priority low">LOW</div>
-      <% end %>
+      <div class="priority <%= @project.priority.downcase%>"><%= @project.priority %></div>
     </div>
     <% end %>
 
@@ -54,30 +45,25 @@
           <% end%>
           
           <%= link_to task.title, task_path(task.id), class: "task-title" %>
-          <% case task.status %>
-          <% when 1 %>
-            <div class="status complete">Complete</div>
-          <% when 2 %>
-            <div class="status in-progress">In Progress</div>
-          <% when 3 %>
-            <div class="status on-hold">On Hold</div>
-          <% when 4 %>
-            <div class="status assigned">Assigned</div>
-          <% when 5 %>
-            <div class="status unassigned">Unassigned</div>
-          <% end %>
+          
+          <div class="status <%= task.status.downcase.gsub ' ', '-' %>"><%= task.status %></div>
+
           <% if task.due_date%>
             <div class="task-due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
           <% end%>
 
           <p class="task-description"><%= task.description %></p>      
 
+          
         </li>
+        
       <% end %>
     </ul>
 
   </section>
 </div>
+
+
 
 
       

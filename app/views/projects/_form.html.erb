@@ -25,18 +25,10 @@
   </div>
   <div>
     <%= f.label :priority %>
-    <br>
-    <%= f.radio_button :priority, 1 %>
-    <%= f.label :priority, 'Urgent', :value => 1 %>
-    <br>
-    <%= f.radio_button :priority, 2 %>
-    <%= f.label :priority, 'High', :value => 2 %>
-    <br>
-    <%= f.radio_button :priority, 3 %>
-    <%= f.label :priority, 'Medium', :value => 3 %>
-    <br>
-    <%= f.radio_button :priority, 4 %>
-    <%= f.label :priority, 'Low', :value => 4 %>
+    <% Project.priorities.keys.each do |s| %>
+      <%= f.radio_button :priority, s %>
+      <%= f.label :priority, s, :value => s %>
+    <% end %>
   </div>
   <div>
     <%= f.label :user_id %>
@@ -64,36 +56,17 @@
       </div>
       <div>
         <%= t.label :status %>
-        <br>
-        <%= t.radio_button :status, 1 %>
-        <%= t.label :status, 'Complete', :value => 1 %>
-        <br>
-        <%= t.radio_button :status, 2 %>
-        <%= t.label :status, 'In Progress', :value => 2 %>
-        <br>
-        <%= t.radio_button :status, 3 %>
-        <%= t.label :status, 'On Hold', :value => 3 %>
-        <br>
-        <%= t.radio_button :status, 4 %>
-        <%= t.label :status, 'Assigned', :value => 4 %>
-        <br>
-        <%= t.radio_button :status, 5 %>
-        <%= t.label :status, 'Unassigned', :value => 5 %>
+        <% Task.statuses.keys.each do |s| %>
+          <%= t.radio_button :status, s %>
+          <%= t.label :status, s, :value => s %>
+        <% end %>
       </div>
       <div>
         <%= t.label :priority %>
-        <br>
-        <%= t.radio_button :priority, 1 %>
-        <%= t.label :priority, 'Urgent', :value => 1 %>
-        <br>
-        <%= t.radio_button :priority, 2 %>
-        <%= t.label :priority, 'High', :value => 2 %>
-        <br>
-        <%= t.radio_button :priority, 3 %>
-        <%= t.label :priority, 'Medium', :value => 3 %>
-        <br>
-        <%= t.radio_button :priority, 4 %>
-        <%= t.label :priority, 'Low', :value => 4 %>
+        <% Task.priorities.keys.each do |s| %>
+          <%= t.radio_button :priority, s %>
+          <%= t.label :priority, s, :value => s %>
+        <% end %>
       </div>
     <% end %>
   </div>

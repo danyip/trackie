@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
     
     if @project.tasks.count != 0
       num_all_tasks = @project.tasks.count.to_f
-      complete_tasks = @project.tasks.where status: 1
+      complete_tasks = @project.tasks.where status: "Complete"
       num_complete_tasks = complete_tasks.count.to_f
       @percentage_done = ((num_complete_tasks / num_all_tasks)*100).round
     end

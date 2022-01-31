@@ -19,27 +19,17 @@
   </div>
   <div>
     <%= f.label :status %>
-    <%= f.label :status, 'Complete', :value => 1 %>
-    <%= f.radio_button :status, 1 %>
-    <%= f.label :status, 'In Progress', :value => 2 %>
-    <%= f.radio_button :status, 2 %>
-    <%= f.label :status, 'On Hold', :value => 3 %>
-    <%= f.radio_button :status, 3 %>
-    <%= f.label :status, 'Assigned', :value => 4 %>
-    <%= f.radio_button :status, 4 %>
-    <%= f.label :status, 'Unassigned', :value => 5 %>
-    <%= f.radio_button :status, 5 %>
+    <% Task.statuses.keys.each do |s| %>
+      <%= f.radio_button :status, s %>
+      <%= f.label :status, s, :value => s %>
+    <% end %>
   </div>
   <div>
     <%= f.label :priority %>
-    <%= f.label :priority, 'Urgent', :value => 1 %>
-    <%= f.radio_button :priority, 1 %>
-    <%= f.label :priority, 'High', :value => 2 %>
-    <%= f.radio_button :priority, 2 %>
-    <%= f.label :priority, 'Medium', :value => 3 %>
-    <%= f.radio_button :priority, 3 %>
-    <%= f.label :priority, 'Low', :value => 4 %>
-    <%= f.radio_button :priority, 4 %>
+    <% Task.priorities.keys.each do |s| %>
+      <%= f.radio_button :priority, s %>
+      <%= f.label :priority, s, :value => s %>
+    <% end %>
   </div>
   <div>
     <%= f.label :project_id %>
