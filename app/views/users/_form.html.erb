@@ -51,18 +51,19 @@
   <br>
   
   <div>
-  or make a new one:
+  Make a new one:
     <%= f.fields_for :skills, Skill.new do |s| %>
-      <div>
-        <%= s.label :skill_type %>
-        <%= s.text_field :skill_type %>
-      </div>
+      <div id="fieldset-container">
+        <fieldset id="0">
+          <%= s.label :skill_type %>
+          <%= s.text_field :skill_type %>
     <% end %>
-  
+        </fieldset>
+      </div>
   </div>
-
-
   <%= f.submit  %>
-
 <% end %>
+      <button id="add-skill">Add another skill</button>
+
+
 
