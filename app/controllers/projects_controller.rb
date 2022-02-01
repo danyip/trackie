@@ -38,15 +38,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+
     @project = Project.find params[:id]
-    
-    if @project.tasks.count != 0
-      num_all_tasks = @project.tasks.count.to_f
-      complete_tasks = @project.tasks.where status: "Complete"
-      num_complete_tasks = complete_tasks.count.to_f
-      @percentage_done = ((num_complete_tasks / num_all_tasks)*100).round
-    end
-    
+
+    @percentage_done = @project.calc_project_completion unless @project.tasks.count == 0
+
   end
 
   def edit
@@ -57,6 +53,11 @@ class ProjectsController < ApplicationController
     @project = Project.find params[:id]
     
     if @project.update project_params
+
+      @project.tasks.each do |task| # Run the update_task_status method on each task in the project
+        task.update_task_status
+      end #end do
+
       @project.users.clear
     
       if project_user_params[:user_ids]
