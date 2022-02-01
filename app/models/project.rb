@@ -9,5 +9,16 @@ class Project < ApplicationRecord
 
   enum priority: [:Urgent, :High, :Medium, :Low]
 
+  # def calc_project_completion
+
+  #     # num_all_tasks = tasks.count.to_f
+  #     # complete_tasks = tasks.where status: "Complete"
+  #     # num_complete_tasks = complete_tasks.count.to_f
+     
+      
+  #     ((tasks.where status: "Complete".count.to_f)/(tasks.count.to_f)*100).round
+  #   #  p ((num_complete_tasks / num_all_tasks)*100).round
+    
+  # end
   
 end

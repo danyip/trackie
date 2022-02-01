@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new 
-    @project.tasks.build
+    @project.tasks.build # this is for the nested task creation
   end
 
   def create
