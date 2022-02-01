@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   
-  # before_action :check_if_logged_in
+  before_action :check_if_logged_in
 
   def new
     @project = Project.new 

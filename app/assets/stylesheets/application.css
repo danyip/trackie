@@ -57,7 +57,7 @@ footer {
 .header-wrapper {
   width: var(--main-width);
   margin: 0 auto;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   position: relative;
   display: grid;
   grid-template-areas: 
@@ -68,7 +68,7 @@ footer {
 
 
 .page-wrapper {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: var(--main-width);
   height: calc(100vh - 7.6rem);
   margin: 0 auto;

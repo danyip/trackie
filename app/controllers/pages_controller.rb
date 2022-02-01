@@ -4,11 +4,12 @@ class PagesController < ApplicationController
   
   def home
     
-    # if session[:user_id]
+    if !session[:user_id]
     # if user has a session
       # show their home page
     # else
-      #redirect to login
+      redirect_to login_path
+    end
   end
 
 end

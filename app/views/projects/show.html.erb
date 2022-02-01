@@ -3,7 +3,7 @@
   
   <div class="project-header-container">
     <h1>
-    <%= link_to image_tag(@project.user.profile_pic, class: "profile-pic-small"), user_path(@project.user_id) %>
+    <%= link_to image_tag(@project.user.profile_pic, class: "small-pic"), user_path(@project.user_id) %>
     <%=  link_to @project.title, edit_project_path%> 
     </h1>
     

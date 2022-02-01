@@ -1,0 +1,127 @@
+<div id="home-wrapper">
+
+<% if @current_user.projects.present?%>
+
+  <section id="user-projects">
+    <h2>Your Projects</h2>
+    <div id="projects-wrapper">
+    <% @current_user.projects.order("priority").each do |project| %>
+      
+      <article class="project-box">
+        
+        <div class="title"><h3><%= link_to project.title, project_path(project.id), title: "To the project!" %></h3></div>
+
+        
+
+        <div class="project-description"><p><%= project.description %></p></div>
+
+        <div class="owner-links">
+          <%= link_to 'Edit', edit_project_path(project.id), class: "edit-link" %>
+          <%= link_to 'Delete', project_path(project.id), method: 'delete', class: "delete-link" %>
+        </div>
+        
+        <div class="project-user-container">
+          <% project.tasks.pluck(:user_id).uniq.compact.each do |user_id|%>
+            <% if User.find(user_id).profile_pic.present?%>
+              <%= link_to image_tag(User.find(user_id).profile_pic, class: "user-image small-pic"), user_path(user_id), title: "#{User.find(user_id).username}" %>
+              <% end %>
+          <% end %>
+        </div>
+
+        <% if project.priority%>
+          <div class="priority-wrapper">
+            <span>Priority: </span>
+            <div class="priority <%= project.priority.downcase%>"><%= project.priority %></div>
+          </div>
+        <% end %>
+
+        <% if project.due_date%>
+          <div class="due">Due: <%= ((((project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+        <% end %>
+
+        <% if project.tasks.present?%>
+          <div class="progress"><p>Progress: <%= project.calc_project_completion  %>%</p></div>
+        <% end %>
+
+        <div class="task-count"><p>Tasks: <%= project.tasks.count %></p></div>
+        
+      </article>
+    <% end %>
+    </div>
+  </section>
+
+<% end %>
+
+<% if @current_user.tasks.present?%>
+  
+  <section id="user-tasks">
+    <h2>Your Tasks</h2>
+    <div id="tasks-wrapper">
+    <% @current_user.tasks.order("priority").each do |task| %>
+      
+      <article class="project-box">
+        
+        <div class="title"><h3><%= task.title %></h3><p>Project: <%= task.project.title %></p></div>
+
+        <div class="project-description"><p><%= task.description %></p></div>
+        
+        <% if task.priority%>
+          <div class="priority-wrapper">
+            <span>Priority: </span>
+            <div class="priority <%= task.priority.downcase%>"><%= task.priority %></div>
+          </div>
+        <% end %>
+
+        <% if task.due_date%>
+          <div class="due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+        <% end %>
+
+
+      </article>
+    <% end %>
+    </div>
+
+  </section>
+
+<% else %>
+
+  <section id="user-tasks">
+    <h2>Here's some unassigned tasks</h2>
+    <div id="tasks-wrapper">
+    <% Task.where(user_id: nil).order("priority").each do |task| %>
+      
+      <article class="project-box">
+        
+        <div class="title">
+          <h3><%= task.title %></h3>
+          <p>Project: <%= task.project.title %></p>
+          <p>Owner: <%= link_to task.project.user.username, user_path(task.project.user_id) %></p>
+          
+        </div>
+
+        <div class="project-description"><p><%= task.description %></p></div>
+        
+        <% if task.priority%>
+          <div class="priority-wrapper">
+            <span>Priority: </span>
+            <div class="priority <%= task.priority.downcase%>"><%= task.priority %></div>
+          </div>
+        <% end %>
+
+        <% if task.due_date%>
+          <div class="due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+        <% end %>
+
+
+      </article>
+    <% end %>
+    </div>
+
+  </section>
+
+
+<% end %>
+
+</div>
+
+

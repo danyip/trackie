@@ -6,7 +6,7 @@
 
 
 /* Project Heading */
-.project-header-container {
+/* .project-header-container {
   display: grid;
   grid-template-areas: 
   "title title delete"
@@ -14,7 +14,7 @@
   "title title priority"
   "users . progress";
   
-}
+} */
 .project-header-container h1 {
   padding: 5px 0;
   grid-area: title;
@@ -22,7 +22,7 @@
   margin: 0
 }
 
-.delete-link {
+/* .delete-link {
   grid-area: delete;
   border: 2px solid black;
   width: fit-content;
@@ -31,7 +31,7 @@
   font-size: 0.6rem;
   background-color: rgb(255, 66, 66);
   justify-self: right;
-}
+} */
 
 .due {
   grid-area: due;
@@ -69,10 +69,7 @@
 }
 
 /* Project Descritpion  */
-.project-description {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-}
+
 
 
 /* Project tasks */
