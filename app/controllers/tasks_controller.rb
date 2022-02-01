@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   # before_action :check_if_logged_in
 
   def new
-    
   end
 
   def create
@@ -15,7 +14,6 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find params[:id]
-    @project = @task.project
   end
 
   def edit
@@ -34,18 +32,19 @@ class TasksController < ApplicationController
     #   return 
     # end 
 
-    if @task.update task_params
-        @task.update_task_status
-      redirect_to task_path @task
-    else
-      render :edit
+    if @task.update task_params # if the task update is sucessful
+        @task.update_task_status # check and update the status
+      redirect_to task_path @task # redirect to the task
+    else #if update unsucessful
+      render :edit # back to the edit page
     end 
 
   end
 
   def destroy
-    task = Task.find params[:id]
-    parent = Project.find task.project_id
+    task = Task.find params[:id] # readability
+    parent = Project.find task.project_id # readability
+
     Task.destroy task.id
     redirect_to project_path(parent.id) 
   end

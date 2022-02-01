@@ -4,25 +4,25 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @user.skills.build
-    @skill_ids = @user.skills.pluck :id
+    @user.skills.build # This is to make a new skill whilst creating a user
   end
 
   def create
 
     @user = User.create user_params
 
-    if @user.persisted?
-      session[:user_id] = @user.id
-      redirect_to user_path @user.id
+    if @user.persisted? # if user create was sucessful
       
-
-      if user_skill_params[:skills].present?
-        skills = Skill.find user_skill_params[:skills]
-        @user.skills << skills
+      session[:user_id] = @user.id # set the session user id (log in the user) 
+      
+      if user_skill_params[:skills].present? # if some skills were selected from the existing skills
+        skills = Skill.find user_skill_params[:skills]  #grab those skills
+        @user.skills << skills # push to join table
       end
+
+      redirect_to user_path @user.id #redirect to the users show page 
       
-    else
+    else # if create was unsuscessful, go back to the form
       render :new
     end
 
@@ -38,26 +38,29 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find params[:id]
-    @skill_ids = @user.skills.pluck :id
+   
   end
 
   def update
     @user = User.find params[:id]
 
-      @user.skills.clear
+    skills_before_update = Skill.all.ids # grab the list of skills
 
-    if @user.update user_params
-      
-      if user_skill_params[:skills].present?
-        skills = Skill.find user_skill_params[:skills]
-        @user.skills << skills
+    if @user.update user_params # if the update is sucessful
+      @user.skills.clear # clear all skill associations for the user
+      new_skills = Skill.find (Skill.all.ids  - skills_before_update) # grab the new skills
+      @user.skills << new_skills # push them on
+
+      if user_skill_params[:skills].present? # if some exisiting skills were selected
+        skills = Skill.find user_skill_params[:skills] # grab them
+        @user.skills << skills # push them into the join table
       end
 
-      redirect_to user_path params[:id]
+      redirect_to user_path params[:id] # redirect to the user show page
 
-    else
+    else # if update unsucessful
 
-      render :edit
+      render :edit # back to the form we go...
       
     end
   end
@@ -75,9 +78,8 @@ class UsersController < ApplicationController
         .permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :profile_pic, skills_attributes: [:skill_type])
   end
 
-  def user_skill_params
-    params.require(:user).permit(:skills => [])
-    
+  def user_skill_params # this contains the skills that a user has from the EXISTING skills checkboxes
+    params.require(:user).permit(:skills => [])  
   end
   
 end

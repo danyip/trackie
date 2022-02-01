@@ -15,15 +15,11 @@ class SessionController < ApplicationController
       redirect_to root_path
     
     else
-
       # Flash hash is a bit like session in that it is remembered accross page requests, BUT ONLY FOR THE VERY NEXT PAGE LOAD. Show error or status messages about something that happened on the previous request.
-      flash[:error] = "Invalid email of password"
+      flash[:error] = "Invalid email or password"
       
       redirect_to login_path
-
     end
-
-
 
   end
 

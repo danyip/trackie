@@ -16,17 +16,9 @@ class ProjectsController < ApplicationController
         task.update_task_status
       end #end do
       
-
-      if project_user_params[:user_ids] # if some users have been assigned to the project
-        users = User.find project_user_params[:user_ids] # find them
-        @project.users << users # and push them into the projects_users table
-      else
-        @project.users << @current_user # otherwise just push the current user
-      end # if-else user assignment
-
       redirect_to project_path @project.id # redirect to the new project
 
-    else # if the proejct creation was unsucessful
+    else # if the project creation was unsucessful
 
       render :new # go back to the new form
 
@@ -52,26 +44,18 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find params[:id]
     
-    if @project.update project_params
-
+    if @project.update project_params #If the update is sucessful
+      
       @project.tasks.each do |task| # Run the update_task_status method on each task in the project
         task.update_task_status
       end #end do
 
-      # @project.users.clear
-    
-      # if project_user_params[:user_ids]
-      #   users = User.find project_user_params[:user_ids]
-      #   @project.users << users
-      #   redirect_to project_path params[:id]
-      # else
-      #   @project.users << @current_user
-      #   redirect_to project_path params[:id]
-      # end
+      redirect_to project_path params[:id] # Redirect to the project
 
-    else
-      render :edit
+    else # if the update was unsucessful
+      render :edit #go back to the edit
     end
+
   end
 
   def destroy
@@ -84,13 +68,7 @@ class ProjectsController < ApplicationController
   def project_params
     params
       .require(:project)
-        .permit(:title, :description, :due_date, :priority, tasks_attributes: [:title, :description, :due_date, :status, :priority, :project_id, :user_id])
+        .permit(:title, :description, :due_date, :priority, :user_id, tasks_attributes: [:title, :description, :due_date, :status, :priority, :project_id, :user_id])
   end 
 
-  # def project_user_params
-  #   params.require(:project).permit(:user_ids => [])
-  # end
-
-
-
-end
+end # ProjectsController

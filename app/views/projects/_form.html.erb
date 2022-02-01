@@ -30,6 +30,10 @@
       <%= f.label :priority, s, :value => s %>
     <% end %>
   </div>
+  <div>
+        <%= f.label :user_id %>
+        <%= f.collection_select :user_id, User.all, :id, :username %>
+  </div>
 
 
   <div>

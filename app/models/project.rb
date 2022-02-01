@@ -10,6 +10,7 @@ class Project < ApplicationRecord
 
   enum priority: [:Urgent, :High, :Medium, :Low]
 
+  # Calculates and returns a percentage based on how many tasks are complete
   def calc_project_completion
 
       num_all_tasks = tasks.count.to_f

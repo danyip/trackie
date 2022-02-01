@@ -44,7 +44,7 @@
   <div>
   Select some skills: <br>
     <%= f.collection_check_boxes(:skills, Skill.all, :id, :skill_type, include_hidden: false) do |b| %>
-      <%= b.check_box(checked: @skill_ids.include?(b.value)) %>
+      <%= b.check_box(checked: @user.skills.ids.include?(b.value)) %>
       <%= b.label%> 
     <% end %>
   </div>
