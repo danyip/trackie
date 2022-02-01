@@ -27,7 +27,7 @@ User.destroy_all
     username: "yipples",
     email: "danielyip90@gmail.com",
     password: "chicken",
-    profile_pic: "http://www.placekitten.com/200/200"
+    profile_pic: "https://www.fillmurray.com/400/400"
   )
   u2 = User.create!(
     first_name: "Luke",
@@ -35,7 +35,7 @@ User.destroy_all
     username: "textchimp",
     email: "luke@ga.co",
     password: "chicken",
-    profile_pic: "http://www.placekitten.com/300/300"
+    profile_pic: "https://www.fillmurray.com/300/300"
   )
   u3 = User.create!(
     first_name: "Rowena",
@@ -43,7 +43,7 @@ User.destroy_all
     username: "ro_boat",
     email: "ro@ga.co",
     password: "chicken",
-    profile_pic: "http://www.placekitten.com/250/250"
+    profile_pic: "https://www.fillmurray.com/250/250"
   )
   u4 = User.create!(
     first_name: "Bill",
@@ -51,7 +51,7 @@ User.destroy_all
     username: "billy",
     email: "bill@murray.com",
     password: "chicken",
-    profile_pic: "http://www.fillmurray.com/200/200"
+    profile_pic: "https://www.fillmurray.com/200/200"
   )
 
   u1.skills << s1 << s2 << s3 << s4 << s5 << s6
