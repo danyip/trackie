@@ -1,4 +1,4 @@
-document.addEventListener("click", e => {
+document.addEventListener("click", function(e){
   // console.log("click");
   const isDropdownButton = e.target.matches('.dropdown-button');
   // console.log(isDropdownButton);
