@@ -6,11 +6,12 @@
 
   <% @projects.each do |project|%>
     <li>
-      <%= link_to "#{project.title}", project_path(project.id) %>
-      <% project.users.each do |user| %>
-        <%= link_to image_tag(user.profile_pic, class: "profile-pic-small"), user_path(user.id), title: "#{user.username}" %>
-      <% end %>
+      <%= link_to image_tag(project.user.profile_pic, class: "profile-pic-small"), user_path(project.user_id) %>
+      <%= link_to project.title, project_path(project.id) %>
+
+      <%=  %>
     </li>
   <% end %>
 
 </ul>
+

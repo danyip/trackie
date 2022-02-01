@@ -74,46 +74,51 @@ Project.destroy_all
     title: 'Project_1',
     description: 'Build a full-stack application using Rails.',
     due_date: '2022/02/04 09:00',
-    priority: 1
+    priority: 1,
+    user_id: u1.id
   )
 
   p2 = Project.create!(
     title: 'Tic-Tac-Toe',
     description: 'Make a tic tac toe game',
     due_date: '2022/01/14',
-    priority: 1
+    priority: 1,
+    user_id: u1.id
   )
 
   p3 = Project.create!(
     title: 'Hardcore MTA',
     description: 'Do an MTA in ruby with more then one interchange. Find the shortest route from station to station.',
     due_date: '2025/12/25',
-    priority: 2
+    priority: 2,
+    user_id: u1.id
   )
 
   p4 = Project.create!(
     title: 'TV unit',
     description: 'Build a TV unit for the new house',
     due_date: '2021/09/10',
-    priority: 3
+    priority: 3,
+    user_id: u1.id
   )
 
   p5 = Project.create!(
     title: 'Party Time',
     description: 'Prepare for a party',
     due_date: '2022/02/04',
-    priority: 2
+    priority: 2,
+    user_id: u1.id
   )
 
   puts "#{Project.count} projects created".blue
   puts "#{Project.pluck(:title).join ', '}".yellow
   puts 
 
-  p1.users << u1 << u2 << u3 << u4
-  p2.users << u1
-  p3.users << u3 << u4 << u1
-  p4.users << u1
-  p5.users << u2 << u3 << u4
+  # p1.users << u1 << u2 << u3 << u4
+  # p2.users << u1
+  # p3.users << u3 << u4 << u1
+  # p4.users << u1
+  # p5.users << u2 << u3 << u4
 
 
 # TASK SEEDS
@@ -256,10 +261,5 @@ Task.destroy_all
   puts "#{Task.pluck(:title).join ', '}".yellow
   puts 
 
-  
- 
-  
-
-  
 
 

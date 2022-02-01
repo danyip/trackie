@@ -58,16 +58,16 @@ class ProjectsController < ApplicationController
         task.update_task_status
       end #end do
 
-      @project.users.clear
+      # @project.users.clear
     
-      if project_user_params[:user_ids]
-        users = User.find project_user_params[:user_ids]
-        @project.users << users
-        redirect_to project_path params[:id]
-      else
-        @project.users << @current_user
-        redirect_to project_path params[:id]
-      end
+      # if project_user_params[:user_ids]
+      #   users = User.find project_user_params[:user_ids]
+      #   @project.users << users
+      #   redirect_to project_path params[:id]
+      # else
+      #   @project.users << @current_user
+      #   redirect_to project_path params[:id]
+      # end
 
     else
       render :edit
@@ -87,9 +87,9 @@ class ProjectsController < ApplicationController
         .permit(:title, :description, :due_date, :priority, tasks_attributes: [:title, :description, :due_date, :status, :priority, :project_id, :user_id])
   end 
 
-  def project_user_params
-    params.require(:project).permit(:user_ids => [])
-  end
+  # def project_user_params
+  #   params.require(:project).permit(:user_ids => [])
+  # end
 
 
 

@@ -30,10 +30,7 @@
       <%= f.label :priority, s, :value => s %>
     <% end %>
   </div>
-  <div>
-    <%= f.label :user_id %>
-    <%= f.collection_check_boxes :user_ids, User.all, :id, :username, include_hidden: false %>
-  </div>
+
 
   <div>
     <h4>Create a new task</h4>
