@@ -9,36 +9,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application', defer: true %>
   </head>
 
   <body>
 
     <header>
-      <a href=<%= projects_path %> class="logo">trackie</a>
 
-      <% if @current_user.present?%>
-        <a href=<%= users_path %> class="user-link"><%= image_tag @current_user.profile_pic, class: "profile-pic-med " %></a>
-        <%= link_to 'Logout', login_path, method: 'delete' %>
-        <% else %>
-        <%= link_to 'Login', login_path %>
-        <%= link_to 'Sign Up', new_user_path %>
+      <div class="header-wrapper">
+        <% if @current_user.present?%>
+          <div class="dropdown" id="main-nav">
+            
+            <button class="dropdown-button">Menu</button>
+
+            <div class="dropdown-menu" id="main-nav-menu">
+              <%= link_to 'Projects', projects_path %>
+              <%= link_to 'Tasks', tasks_path %>
+              <%= link_to 'Users', users_path %>
+              <%= link_to 'Skills', skills_path %>
+            </div>
+          
+          </div>
+        <% end%>
+
+        <a href=<%= root_path %> id="main-logo">trackie</a>
         
-      <% end%>
+        <% if @current_user.present?%>
+          <div class="dropdown" id="current-user-nav">
+            
+            <% if @current_user.profile_pic.present?%>
+              <%= image_tag @current_user.profile_pic, class: 'user-image med-pic dropdown-button' %>
+            <% else%>
+              <span class="dropdown-button"><%= @current_user.username %></span>
+            <% end %>
+
+            <div class="dropdown-menu" id="user-nav-menu">
+              <%= link_to 'Profile', user_path(@current_user.id) %>
+              <%= link_to 'Logout', login_path, method: 'delete' %>
+            </div>
+
+          </div>
+          <% else %>
+          <div id="signup-link">
+            <%= link_to 'Sign Up', new_user_path %>
+          </div>
+        <% end%>
+      </div>
     </header>
 
-    <%= yield %>
+    <div class="page-wrapper">
+
+      <%= yield %>
+    
+    </div>
   
     <footer>
-
-      <nav>
-        <%= link_to (image_tag 'project_icon', class: "nav-link-img"), projects_path %>
-        <%= link_to (image_tag 'task_icon', class: "nav-link-img"), tasks_path %>
-        <%= link_to 'users', users_path %>
-        <%= link_to 'skills', skills_path %>
-      </nav>
+      <marquee>&copy danyip 2021</marquee>
     </footer>
+
   </body>
 </html>
-
-<%=  %>

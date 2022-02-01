@@ -13,3 +13,144 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+:root{
+  --main-width: 95vw;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+/* @media screen and (min-width: 800px) {
+  :root{
+    --main-width: 800px;
+  }
+} */
+
+
+body, html {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+header, footer {
+  padding: 0.25rem;
+  background-color: rgb(142, 142, 142);
+}
+
+header {
+  height: 3.5rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.header-wrapper {
+  width: var(--main-width);
+  margin: 0 auto;
+  border: 1px solid green;
+  position: relative;
+  display: grid;
+  grid-template-areas: 
+  "nav logo user";
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+
+.page-wrapper {
+  border: 1px solid red;
+  width: var(--main-width);
+  height: calc(100vh - 7.6rem);
+  margin: 0 auto;
+  /* position: relative; */
+  overflow: scroll;
+}
+
+
+.user-image {
+  object-fit: cover;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.small-pic {
+  height: 1.5rem;
+  width: 1.5rem
+}
+.med-pic {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+.large-pic {
+  height: 12rem;
+  width: 12rem
+}
+
+
+
+.dropdown {
+  /* border: 1px solid red; */
+  position: relative;
+}
+.dropdown-menu{
+  position: absolute;
+  /* left: 0; */
+  top: calc(100% + 0.5rem);
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: .25rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+.dropdown.active > .dropdown-button + .dropdown-menu{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#current-user-nav, #signup-link{
+  justify-self: right;
+  cursor: pointer;
+  grid-area: user;
+}
+
+#main-nav {
+  justify-self: left;
+  grid-area: nav;
+
+}
+
+#main-logo {
+  font-size: 3rem;
+  font-family: 'Bangers', sans-serif;
+  justify-self: center;
+  grid-area: logo;
+}
+
+#user-nav-menu{
+  left: -3rem;
+  flex-direction: column;
+  cursor: auto;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: rgba(0, 0, 0, 1);
+}
+
+a:hover{
+  color: rgba(0, 0, 0, 0.7);
+}

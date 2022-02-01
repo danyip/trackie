@@ -1,29 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-:root {
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-}
 
-* {
-  /* border: 1px solid red; */
-}
-
-body, html {
-  /* border: 1px solid green; */
-  margin: 0;
-  width: 100%;
- 
-  /* overflow: hidden; */
-  
-}
-
-header, footer {
-  text-align: center;
-  position: relative;
-  padding: 5px;
-  background-color: rgb(142, 142, 142);
-}
 
 
 footer {
@@ -44,35 +19,13 @@ a{
 }
 
 .logo {
-  font-size: 3rem;
-  font-family: 'Bangers', sans-serif;
+  
   
   /* vertical-align: middle; */
   /* padding: 5px 0; */
 }
 
-.user-link {
-  position: absolute;
-  right: 10px;
-}
 
-.profile-pic-small {
-  height: 1.5rem;
-  border-radius: 50%;
-  vertical-align: middle;
-}
-
-.profile-pic-med {
-  height: 3rem;
-  border-radius: 50%;
-  vertical-align: middle;
-}
-
-.profile-pic-large {
-  height: 12rem;
-  border-radius: 50%;
-  vertical-align: middle;
-}
 
 li {
   list-style-type: none;
