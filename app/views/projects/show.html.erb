@@ -14,14 +14,6 @@
       </div>
     <% end %>
 
-    <div class="project-user-container">
-      <% @project.tasks.pluck(:user_id).uniq.compact.each do |user_id|%>
-        <% if User.find(user_id).profile_pic.present?%>
-          <%= link_to cl_image_tag(User.find(user_id).profile_pic, width: 100, height: 100,crop: "fill", class: "user-image small-pic"), user_path(user_id), title: "#{User.find(user_id).username}" %>
-          <% end %>
-      <% end %>
-    </div>
-
     <% if @project.priority%>
       <div class="priority-wrapper">
         <strong>Priority: </strong>
@@ -43,7 +35,48 @@
     
   </article>
 
-  
+  <% @project.tasks.order('priority').each do |task|%>
+
+    
+        <article class="project-box project-task-box">
+        
+          <div class="title">
+            <h3><%= link_to cl_image_tag(task.user.profile_pic, width: 100, height: 100,crop: "fill", class: "user-image small-pic"), user_path(task.user.id), title: "#{task.user.username}" %> <%= link_to task.title, task_path(task.id) %></h3>
+          </div>
+
+          <div class="unassigned-task-info">
+          
+            <p><strong>Assigned to: </strong> <%= link_to task.user.username, user_path(task.project.user_id) %>
+            <% if @current_user == task.user || @current_user == @project.user%>
+              <%= link_to 'Edit', edit_task_path(task.id), class: "edit-link" %>
+              <%= link_to 'Delete', task_path(task.id), method: 'delete', class: "delete-link" %>
+            <% end %>
+            
+            </p>
+          </div>
+
+          <div class="project-description"><p><%= task.description %></p></div>
+          
+          <% if task.priority%>
+            <div class="priority-wrapper">
+              <strong>Priority: </strong>
+              <div class="priority <%= task.priority.downcase%>"><%= task.priority %></div>
+            </div>
+          <% end %>
+
+          <% if task.due_date%>
+            <div class="due"><strong>Due: </strong><%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <% end %>
+
+          <div class="status-wrapper">
+            <strong>Status: </strong>
+            <div class="status <%= task.status.downcase.gsub(' ','-') %> "><%= task.status %></div>
+          </div>
+        
+        </article>
+
+
+  <% end %>
 
 </section>
 

@@ -29,7 +29,18 @@
 .show-project-box > .task-count{
   grid-area: count;
 }
-
 .owner{
   grid-area: owner;
+}
+
+
+.project-task-box{
+  margin: 0 auto;
+  width: 90%;
+  overflow: hidden;
+  /* height: 2rem; */
+}
+
+.project-task-box:active{
+  height: fit-content;
 }
