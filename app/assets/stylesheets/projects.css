@@ -1,4 +1,4 @@
-#show-project-wrapper{
+#show-project-wrapper {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -76,4 +76,25 @@
 
 .show-task-box{
   margin: 0 auto;
+}
+
+
+#skill-wrapper {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+#skill-wrapper .users-wrapper{
+  margin: 1rem auto;
+}
+
+#skill-wrapper h1{
+  font-size: 2rem;
+  margin: 0;
+  text-align: center;
+}
+
+#skill-wrapper .links {
+  margin: 0 auto;
+  width: fit-content;
 }
