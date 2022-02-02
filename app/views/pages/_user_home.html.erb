@@ -4,14 +4,12 @@
 
   <section id="user-projects">
     <h2>Your Projects</h2>
-    <div id="projects-wrapper">
+    <div class="projects-wrapper">
     <% @current_user.projects.order("priority").each do |project| %>
       
       <article class="project-box">
         
         <div class="title"><h3><%= link_to project.title, project_path(project.id), title: "To the project!" %></h3></div>
-
-        
 
         <div class="project-description"><p><%= project.description %></p></div>
 
@@ -56,26 +54,37 @@
   
   <section id="user-tasks">
     <h2>Your Tasks</h2>
-    <div id="tasks-wrapper">
+    <div class="tasks-wrapper">
     <% @current_user.tasks.order("priority").each do |task| %>
       
       <article class="project-box">
         
-        <div class="title"><h3><%= task.title %></h3><p>Project: <%= task.project.title %></p></div>
+        <div class="title">
+        <h3><%= link_to task.title, task_path(task.id) %></h3> 
+        <strong>Project: </strong> <%= link_to task.project.title, project_path(task.project.id) %></p></div>
 
         <div class="project-description"><p><%= task.description %></p></div>
         
+        <div class="owner-links">
+          <%= link_to 'Edit', edit_task_path(task.id), class: "edit-link" %>
+          <%= link_to 'Delete', task_path(task.id), method: 'delete', class: "delete-link" %>
+        </div>
+        
         <% if task.priority%>
           <div class="priority-wrapper">
-            <span>Priority: </span>
+            <strong>Priority: </strong>
             <div class="priority <%= task.priority.downcase%>"><%= task.priority %></div>
           </div>
         <% end %>
 
         <% if task.due_date%>
-          <div class="due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"> <strong>Due:</strong> <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
         <% end %>
 
+        <div class="status-wrapper">
+          <strong>Status: </strong>
+          <div class="status <%= task.status.downcase.gsub(' ','-') %> "><%= task.status %></div>
+        </div>
 
       </article>
     <% end %>
@@ -87,32 +96,39 @@
 
   <section id="user-tasks">
     <h2>Here's some unassigned tasks</h2>
-    <div id="tasks-wrapper">
+    <div class="tasks-wrapper">
     <% Task.where(user_id: nil).order("priority").each do |task| %>
       
       <article class="project-box">
         
         <div class="title">
-          <h3><%= task.title %></h3>
-          <p>Project: <%= task.project.title %></p>
-          <p>Owner: <%= link_to task.project.user.username, user_path(task.project.user_id) %></p>
-          
+          <h3><%= link_to task.title, task_path(task.id) %></h3>
+        
+        </div>
+
+        <div class="unassigned-task-info">
+          <p> <strong>Project:</strong><%= link_to task.project.title, project_path(task.project.id) %></p>
+          <p><strong>Owner: </strong> <%= link_to task.project.user.username, user_path(task.project.user_id) %></p>
         </div>
 
         <div class="project-description"><p><%= task.description %></p></div>
         
         <% if task.priority%>
           <div class="priority-wrapper">
-            <span>Priority: </span>
+            <strong>Priority: </strong>
             <div class="priority <%= task.priority.downcase%>"><%= task.priority %></div>
           </div>
         <% end %>
 
         <% if task.due_date%>
-          <div class="due">Due: <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"><strong>Due: </strong><%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
         <% end %>
 
-
+        <div class="status-wrapper">
+          <strong>Status: </strong>
+          <div class="status <%= task.status.downcase.gsub(' ','-') %> "><%= task.status %></div>
+        </div>
+        
       </article>
     <% end %>
     </div>

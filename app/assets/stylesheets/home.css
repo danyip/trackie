@@ -1,4 +1,8 @@
-#home-wrapper {
+.field_with_errors input {
+  background-color: red;
+}
+
+#home-wrapper, #index-wrapper   {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -15,7 +19,7 @@
   
 }
 
-#projects-wrapper, #tasks-wrapper {
+.projects-wrapper, .tasks-wrapper {
   /* border: 1px solid hotpink; */
   border-radius: 1.5rem;
   display: flex;
@@ -30,6 +34,7 @@
   border-radius: 1rem;
   padding: 0.25rem;
   display: grid;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
   gap: 0.3rem;
   grid-template-columns: auto auto 10rem;
   /* grid-template-rows:  */
@@ -88,10 +93,6 @@
   grid-area: count;
 }
 
-.priority-wrapper{
-  grid-area: priority;
-}
-
 .due{
   grid-area: due;
 }
@@ -104,3 +105,65 @@
   grid-area: progress;
 }
 
+.unassigned-task-info{
+  grid-area: users;
+}
+
+.priority-wrapper{
+  grid-area: priority;
+}
+
+.status-wrapper{
+  grid-area: count;
+}
+
+.priority, .status {
+  border-radius: 8px;
+  font-size: 0.8rem;
+  width: 5rem;
+  text-align: center;
+  border: 2px solid black;
+  display: inline-block;
+}
+.urgent {
+  background-color: red;
+}
+.high {
+  background-color: rgb(255, 140, 0);
+}
+.medium {
+  background-color: rgb(0, 189, 82);
+}
+.low {
+  background-color: rgb(0, 79, 189);
+}
+
+
+.complete {
+  background-color: green;
+}
+.in-progress {
+  background-color: rgb(0, 157, 255);
+}
+.on-hold {
+  background-color: orange;
+}
+.assigned {
+  background-color: rgb(171, 0, 171);
+}
+.unassigned {
+  background-color: red;
+}
+
+.new-link {
+  border: 1px solid rgb(0, 0, 0);
+  padding: .25rem;
+  border-radius: .25rem;
+  margin: 1rem 0;
+  transition: 250ms;
+  background-color: rgba(65, 105, 225, 0.393);
+}
+
+.new-link:hover {
+  background-color: rgba(65, 105, 225, 0.804);
+}

@@ -1,17 +1,57 @@
-<h1>Projects index</h1>
+<div id="index-wrapper">
 
-<%= link_to 'New Project', new_project_path %>
+  <section>
+    <h1>All the projects</h1>
+    <%= link_to 'Make a new project', new_project_path, class: 'new-link' %>
 
-<ul>
+    <div class="projects-wrapper">
+    <% @projects.each do |project|%>
+      <article class="project-box">
+        
+        <div class="title"><h3><%= link_to project.title, project_path(project.id), title: "To the project!" %></h3></div>
 
-  <% @projects.each do |project|%>
-    <li>
-      <%= link_to image_tag(project.user.profile_pic, class: "profile-pic-small"), user_path(project.user_id) %>
-      <%= link_to project.title, project_path(project.id) %>
+        <div class="project-description"><p><%= project.description %></p></div>
 
-      <%=  %>
-    </li>
-  <% end %>
+        <% if @current_user == project.user%>
+        <div class="owner-links">
+          <%= link_to 'Edit', edit_project_path(project.id), class: "edit-link" %>
+          <%= link_to 'Delete', project_path(project.id), method: 'delete', class: "delete-link" %>
+        </div>
 
-</ul>
+        <% end%>
+        
+        <div class="project-user-container">
+          <% project.tasks.pluck(:user_id).uniq.compact.each do |user_id|%>
+            <% if User.find(user_id).profile_pic.present?%>
+              <%= link_to image_tag(User.find(user_id).profile_pic, class: "user-image small-pic"), user_path(user_id), title: "#{User.find(user_id).username}" %>
+              <% end %>
+          <% end %>
+        </div>
+
+        <% if project.priority%>
+          <div class="priority-wrapper">
+            <strong>Priority: </strong>
+            <div class="priority <%= project.priority.downcase%>"><%= project.priority %></div>
+          </div>
+        <% end %>
+
+        <% if project.due_date%>
+          <div class="due"> <strong>Due:</strong> <%= ((((project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+        <% end %>
+
+        <% if project.tasks.present?%>
+          <div class="progress"><p><strong>Progress:</strong> <%= project.calc_project_completion  %>%</p></div>
+        <% end %>
+
+        <div class="task-count"><p> <strong>Tasks:</strong>  <%= project.tasks.count %></p></div>
+        
+      </article>
+    <% end %>
+    </div>
+
+  </section>
+
+</div>
+
+
 

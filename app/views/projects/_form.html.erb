@@ -31,6 +31,7 @@
 
   <div>
     <h4>Create a new task</h4>
+
     <%= f.fields_for :tasks, Task.new do |t|  %>
       <div>
         <%= t.label :title %>
@@ -62,7 +63,36 @@
           <%= t.label :priority, s, :value => s %>
         <% end %>
       </div>
+
+
+    <article class="project-box">
+        
+      <div class="title">
+        <h3><%= t.text_field :title %></h3>
+        <p><%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %></p>
+        
+      </div>
+
+      <div class="project-description"><p><%= t.text_area :description %></p></div>
+      
+      
+        <div class="priority-wrapper">
+          <div class="priority"><%= t.collection_select :priority, Task.priorities.keys, :to_s, :to_s, include_blank: true%></div>
+        </div>
+    
+
+      
+        <div class="due"><%= t.datetime_local_field :due_date %></div>
+      
+
+
+    </article>
+
     <% end %>
+
+
+
+
   </div>
 
 

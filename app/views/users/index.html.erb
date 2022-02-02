@@ -1,12 +1,17 @@
-<h2>User Index</h2>
+<div id="index-wrapper">
 
-<ul>
+  <section>
+    <h1>All the Users</h1>
 
-  <% @users.each do |user|%>
-    <li>
-      <%= link_to (image_tag user.profile_pic, class: "profile-pic-small"), user_path(user.id) %>
-      <%= link_to "#{user.first_name} #{user.last_name}", user_path(user.id) %>
-    </li>
-  <% end %>
+      <ul class="projects-wrapper">
+        <% @users.each do |user|%>
+          <li>
+            <%= link_to (cl_image_tag user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image medium-pic"), user_path(user.id) %>
+            <%= link_to "#{user.first_name} #{user.last_name}", user_path(user.id) %>
+          </li>
+        <% end %>
+      </ul>
 
-</ul>
+  </section>
+
+</div>
