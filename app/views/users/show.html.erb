@@ -23,7 +23,7 @@
 
       <div class="dropdown-menu", id="project-dropdown">
 
-        <% if @user.projects %>
+        <% if @user.projects.length != 0 %>
           <% @user.projects.order("priority").each do |project| %>
             <%= link_to project.title, project_path(project.id) %>
             <br>

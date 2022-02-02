@@ -6,7 +6,7 @@
   gap: 0.5rem;
   grid-template-areas: 
   "pic about"
-  "links dropdowns";
+  "dropdowns links";
   grid-template-columns: 10rem auto;
 }
 
