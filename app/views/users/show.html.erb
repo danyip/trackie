@@ -1,30 +1,57 @@
 <div class="user-show-wrapper">
+  
+  <%= cl_image_tag @user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image x-large-pic" %>
+  
+  <div class="user-links">
+    <% if @current_user == @user%>
+      <%= link_to 'Delete', user_path(@user.id), method: 'delete', class: 'edit-link' %>
+      <%= link_to 'Edit', edit_user_path(@user.id), class: 'delete-link'%>
+    <% end %>
+  </div>
 
-<h2><%= @user.first_name%> <%= @user.last_name%> </h2>
+  <div class="about-user">
+    <h2><%= @user.first_name%> <%= @user.last_name%> </h2>
+    <p><strong>Username: </strong> <%= @user.username %></p>
+    <p><strong>Email: </strong> <%= @user.email %></p>
+    <p> <strong>Skills: </strong><%=@user.skills.pluck(:skill_type).join ", "%></p>
+  </div>
 
-<%= link_to 'Delete', user_path(@user.id), method: 'delete' %>
-<%= link_to 'Edit', edit_user_path(@user.id) %>
+  <div class="dropdowns">
+    <div class="dropdown edit-link" id="user-projects">
+              
+      <div class="dropdown-button">Projects</div>
 
-<%= cl_image_tag @user.profile_pic, width: 100, height: 100, crop: 'fill', class: "profile-pic-large" %>
+      <div class="dropdown-menu", id="project-dropdown">
 
-<p><strong>Username: </strong> <%= @user.username %></p>
-<p>Skills: 
-<%=@user.skills.pluck(:skill_type).join ", "%>
+        <% if @user.projects %>
+          <% @user.projects.order("priority").each do |project| %>
+            <%= link_to project.title, project_path(project.id) %>
+            <br>
+          <% end %>
+        <% else %>
+          <%= link_to 'Make a new Project', new_project_path %>
+        <% end %>
 
-</p>
-<p><strong>Email: </strong> <%= @user.email %></p>
+      </div>
+    
+    </div>
 
+    <% if @user.tasks %>
+      <div class="dropdown edit-link" id="user-tasks">
+              
+      <div class="dropdown-button">Tasks</div>
 
-<article class="user-info-box">
+      <div class="dropdown-menu", id="tasks-dropdown">
 
-  <%= cl_image_tag @user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image large-pic" %>
-  <h4><%= @user.first_name%> <%= @user.last_name%></h4>
-  <p><em><%= @user.username %></em></p>
-  <div class="proj-count"><strong>Projects: </strong><%= @user.projects.count %></div>
-  <div class="task-count"><strong>Tasks: </strong><%= @user.tasks.count %></div>
-  <div class="join-date"><strong>Joined: </strong><%= @user.created_at.strftime("%b %Y") %></div>
+        <% @user.tasks.order("priority").each do |task| %>
+          <%= link_to task.title, task_path(task.id) %>
+          <br>
+        <% end %>
+        
+    <% end %>
 
-
-</article>
+  </div>
+</div>
+</div>
 </div>
 

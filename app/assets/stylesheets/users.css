@@ -1,0 +1,47 @@
+.user-show-wrapper {
+  width: fit-content;
+  max-width: 600px;
+  margin: 1rem auto;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-areas: 
+  "pic about"
+  "links dropdowns";
+  grid-template-columns: 10rem auto;
+}
+
+.x-large-pic{
+  grid-area: pic;
+}
+
+.user-links{
+  grid-area: links;
+  justify-self: center;
+}
+
+.about-user{
+  grid-area: about
+}
+
+.about-user h2{
+  margin-top: 0;
+}
+
+#project-dropdown, #tasks-dropdown{
+  width: 300px;
+
+}
+
+.dropdowns{
+  grid-area: dropdowns;
+  display: flex;
+  gap: 0.25rem;
+}
+
+#user-projects, #user-tasks{
+  background-color: white;
+}
+
+#user-projects:hover, #user-tasks:hover{
+  background-color: rgba(0, 0, 0, 0.051);
+}
