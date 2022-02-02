@@ -1,22 +1,63 @@
-<h1>
-<%= link_to "#{@task.project.title}", project_path(@task.project.id) %>
-</h1>
-<h2><%= @task.title %></h2>
-<%= link_to 'Edit', edit_task_path(@task.id) %>
-<%= link_to 'Delete', task_path(@task.id), method: "delete" %>
 
-<div>
-<div>
-  <% if @task.user %>
-    <%= link_to cl_image_tag(@task.user.profile_pic, width: 100, height: 100, crop: 'fill', class: "profile-pic-small"), user_path(@task.user.id), title: "#{@task.user.username}" %>
-  <% else %>
-    <%= button_tag 'unassgned'  %>
-  <% end %>
-  </div>
-  <div>Priority: <%= @task.priority %></div>
-  <div>Due: <%= @task.due_date %></div>
-  <div>Status: <%= @task.status %></div>
-</div>
 
-<p><%= @task.description %></p>
+<section id="show-project-wrapper">
+
+  <article class="parent-project-box">
+          
+    <div class="title"><h3><%= link_to @task.project.title, project_path(@task.project.id), title: "To the project!" %></h3></div>
+
+    <% if @task.project.priority%>
+      <div class="priority-wrapper">
+        <strong>Priority: </strong>
+        <div class="priority <%= @task.project.priority.downcase%>"><%= @task.project.priority %></div>
+      </div>
+    <% end %>
+
+    <div class="owner">
+      <p><strong>Owner: </strong> <%= link_to @task.project.user.username, user_path(@task.project.user_id) %></p>
+    </div>
+    
+  </article>
+
+  <article class="project-box show-task-box">
+  
+    <div class="title">
+      <h3><%= link_to cl_image_tag(@task.user.profile_pic, width: 100, height: 100,crop: "fill", class: "user-image small-pic"), user_path(@task.user.id), title: "#{@task.user.username}" %> <%= link_to @task.title, task_path(@task.id) %></h3>
+    </div>
+
+    <div class="unassigned-task-info">
+    
+      <p><strong>Assigned to: </strong> <%= link_to @task.user.username, user_path(@task.project.user_id) %>
+      <% if @current_user == @task.user || @current_user == @task.project.user%>
+        <%= link_to 'Edit', edit_task_path(@task.id), class: "edit-link" %>
+        <%= link_to 'Delete', task_path(@task.id), method: 'delete', class: "delete-link" %>
+      <% end %>
+      </p>
+    </div>
+
+    <div class="project-description"><p><%= @task.description %></p></div>
+    
+    <% if @task.priority%>
+      <div class="priority-wrapper">
+        <strong>Priority: </strong>
+        <div class="priority <%= @task.priority.downcase%>"><%= @task.priority %></div>
+      </div>
+    <% end %>
+
+    <% if @task.due_date%>
+      <div class="due"><strong>Due: </strong><%= ((((@task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+    <% end %>
+
+    <div class="status-wrapper">
+      <strong>Status: </strong>
+      <div class="status <%= @task.status.downcase.gsub(' ','-') %> "><%= @task.status %></div>
+    </div>
+  
+  </article>
+
+
+
+
+</section>
+
 

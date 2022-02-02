@@ -44,3 +44,36 @@
 .project-task-box:active{
   height: fit-content;
 }
+
+
+.parent-project-box{
+  margin:0 auto;
+  margin-top: 1rem;
+  border: 2px solid rgb(40, 40, 40);
+  border-radius: 1rem;
+  padding: 0.25rem;
+  display: grid;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  width: fit-content;
+  gap: 0.3rem;
+  grid-template-columns: auto 10rem;
+  grid-template-areas: 
+  "title  priority"
+  "title  owner"
+}
+
+.parent-project-box h3{
+  margin: 0 1rem 0 0;
+  font-size: 1.8rem;
+  align-self: center;
+}
+.parent-project-box .title{
+  align-self: center;
+}
+.parent-project-box p{
+  margin: 0;
+}
+
+.show-task-box{
+  margin: 0 auto;
+}
