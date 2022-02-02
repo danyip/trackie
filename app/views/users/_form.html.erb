@@ -9,7 +9,7 @@
 
 <% end%>
 
-<%= form_with model: @user, local: true do |f|  %>
+<%= form_with model: @user, local: true, html: { multipart: true } do |f|  %>
   
   <div>
     <%= f.label :first_name %>
@@ -29,7 +29,7 @@
   </div>
   <div>
     <%= f.label :profile_pic %>
-    <%= f.text_field :profile_pic, placeholder: 'URL to profile pic' %>
+    <%= f.file_field :profile_pic%>
   </div>
   
   <div>
@@ -55,15 +55,16 @@
     <%= f.fields_for :skills, Skill.new do |s| %>
       <div id="fieldset-container">
         <fieldset id="0">
-          <%= s.label :skill_type %>
-          <%= s.text_field :skill_type %>
+          <%= s.text_field :skill_type, placeholder: "new skill" %>
     <% end %>
         </fieldset>
       </div>
+        <div id="add-skill">Another one!</div>
   </div>
+  <br>
   <%= f.submit  %>
 <% end %>
-      <button id="add-skill">Add another skill</button>
+      
 
 
 

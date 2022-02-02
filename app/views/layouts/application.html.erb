@@ -10,6 +10,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', defer: true %>
+    <%= cloudinary_js_config %>
   </head>
 
   <body>
@@ -38,7 +39,7 @@
           <div class="dropdown" id="current-user-nav">
             
             <% if @current_user.profile_pic.present?%>
-              <%= image_tag @current_user.profile_pic, class: 'user-image med-pic dropdown-button' %>
+              <%= cl_image_tag @current_user.profile_pic, class: 'user-image med-pic dropdown-button' %>
             <% else%>
               <span class="dropdown-button"><%= @current_user.username %></span>
             <% end %>

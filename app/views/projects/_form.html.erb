@@ -11,29 +11,22 @@
 <% end%>
 
 <%=form_with model: @project, local: true do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title, placeholder: 'title' %>
-  </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description, placeholder: 'description' %>
-  </div>
-  <div>
-    <%= f.label :due_date %>
-    <%= f.datetime_local_field :due_date%>
-  </div>
-  <div>
-    <%= f.label :priority %>
-    <% Project.priorities.keys.each do |s| %>
-      <%= f.radio_button :priority, s %>
-      <%= f.label :priority, s, :value => s %>
-    <% end %>
-  </div>
-  <div>
-        <%= f.label :user_id %>
-        <%= f.collection_select :user_id, User.all, :id, :username %>
-  </div>
+  
+  <article class="project-box">
+        
+    <div class="title"><h3><%= f.text_field :title, placeholder: 'title' %></h3></div>
+
+    <div class="project-description"><p><%= f.text_field :description, placeholder: 'description' %></p></div>
+
+      <div class="priority-wrapper">
+        <%= f.collection_select :priority, Project.priorities.keys, :to_s, :to_s, include_blank: true%>
+      </div>
+
+      <div class="due"><%= f.datetime_local_field :due_date%></div>
+
+      <div class="user"><%= f.collection_select :user_id, User.all, :id, :username %></div>
+
+  </article>
 
 
   <div>

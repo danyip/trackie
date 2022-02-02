@@ -9,7 +9,17 @@ class UsersController < ApplicationController
 
   def create
 
-    @user = User.create user_params
+    @user = User.new user_params
+    
+    if params[:user][:profile_pic].present?
+
+      response = Cloudinary::Uploader.upload params[:user][:profile_pic]
+    
+      @user.profile_pic = response['public_id']
+
+    end
+
+    @user.save
 
     if @user.persisted? # if user create was sucessful
       
@@ -42,7 +52,17 @@ class UsersController < ApplicationController
   end
 
   def update
+
+    
     @user = User.find params[:id]
+
+    if params[:user][:profile_pic].present?
+
+      response = Cloudinary::Uploader.upload params[:user][:profile_pic]
+    
+      @user.profile_pic = response['public_id']
+
+    end
 
     skills_before_update = Skill.all.ids # grab the list of skills
 
@@ -75,7 +95,7 @@ class UsersController < ApplicationController
   def user_params
     params
       .require(:user)
-        .permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, :profile_pic, skills_attributes: [:skill_type])
+        .permit(:first_name, :last_name, :username, :email, :password, :password_confirmation, skills_attributes: [:skill_type])
   end
 
   def user_skill_params # this contains the skills that a user has from the EXISTING skills checkboxes
