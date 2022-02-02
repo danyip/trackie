@@ -1,13 +1,15 @@
-<div class="page-wrapper">
-  <h1>All the Skills</h1>
+<div id="index-wrapper">
 
-  <ul>
-    <% @skills.each do |skill|%>
-      <li>
-        <%= link_to skill.skill_type, skill_path(skill.id) %>
-      </li>
 
-    <% end %>
-  </ul>
+<section>
+    <h1>All the Skills</h1>
+      <div class="users-wrapper">
+        <% @skills.each do |skill|%>
+          <div class="skill-box">
+            <%= link_to skill.skill_type, skill_path(skill.id) %>
+          </div>
+        <% end %>
+      </div>
+  </section>
 
 </div>

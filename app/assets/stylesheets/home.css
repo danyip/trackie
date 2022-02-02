@@ -20,13 +20,29 @@
 }
 
 .projects-wrapper, .tasks-wrapper {
-  /* border: 1px solid hotpink; */
+  border: 1px solid hotpink;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
   max-width: 600px;
   min-width: 300px
+}
+
+.users-wrapper{
+  border: 1px solid hotpink;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+  max-width: 700px
+}
+
+.skills-wrapper{
+  border: 1px solid black;
+  display: flex;
+
 }
 
 .project-box{
@@ -166,4 +182,56 @@
 
 .new-link:hover {
   background-color: rgba(65, 105, 225, 0.804);
+}
+
+.user-info-box {
+  /* border: 1px solid green; */
+  border-radius: 4rem;
+  min-width: 300px;
+  display: grid;
+  grid-template-areas: 
+  "image name"
+  "image username"
+  "image date"
+  "image . "
+  "image projects"
+  "image tasks"
+  ;
+  grid-template-columns: 8rem auto ;
+}
+
+.user-info-box:hover{
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.058);
+  color: black;
+  outline: 1px solid rgba(0, 0, 0, 0.181);
+}
+
+.user-info-box > .user-image {
+  grid-area: image;
+  /* border: 3px solid black */
+}
+
+.user-info-box > h4{
+  grid-area: name;
+  margin: 0;
+}
+
+.user-info-box > p{
+  grid-area: username;
+  margin: 0;
+  align-self: top;
+}
+
+.proj-count {
+  grid-area: projects;
+  font-size: 0.8rem;
+}
+.task-count {
+  grid-area: tasks;
+  font-size: 0.8rem;
+}
+.join-date {
+  grid-area: date;
+  font-size: 0.8rem;
 }

@@ -2,16 +2,22 @@
 
   <section>
     <h1>All the Users</h1>
-
-      <ul class="projects-wrapper">
+      <div class="users-wrapper">
         <% @users.each do |user|%>
-          <li>
-            <%= link_to (cl_image_tag user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image medium-pic"), user_path(user.id) %>
-            <%= link_to "#{user.first_name} #{user.last_name}", user_path(user.id) %>
-          </li>
+          
+          <article>
+            <a href="<%= user_path(user.id) %>" class="user-info-box">
+              <%= cl_image_tag user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image large-pic" %>
+              <h4><%= user.first_name%> <%= user.last_name%></h4>
+              <p><em><%= user.username %></em></p>
+              <div class="proj-count"><strong>Projects: </strong><%= user.projects.count %></div>
+              <div class="task-count"><strong>Tasks: </strong><%= user.tasks.count %></div>
+              <div class="join-date"><strong>Joined: </strong><%= user.created_at.strftime("%b %Y") %></div>
+
+            </a>
+          </article>
+
         <% end %>
-      </ul>
-
+      </div>
   </section>
-
 </div>
