@@ -1,2 +1,35 @@
+#show-project-wrapper{
+  max-width: 800px;
+  margin: 0 auto;
+}
 
+.show-project-box{
+  margin-top: 1rem;
+  border: 2px solid rgb(40, 40, 40);
+  border-radius: 1rem;
+  padding: 0.25rem;
+  display: grid;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .5);
+  gap: 0.3rem;
+  grid-template-columns: auto auto 10rem;
+  grid-template-areas: 
+  "title title priority"
+  "owner . progress"
+  "links .  due"
+  "desc desc desc"
+  "users users users"
+}
 
+.show-project-box h3{
+  margin: 0;
+}
+.show-project-box p{
+  margin: 0;
+}
+.show-project-box > .task-count{
+  grid-area: count;
+}
+
+.owner{
+  grid-area: owner;
+}
