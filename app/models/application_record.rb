@@ -8,7 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
 
     mins_due = (due_date - Time.now)/60
 
-    case 
+    case
 
     when mins_due < 0 
       "OVERDUE!"

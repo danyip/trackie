@@ -27,7 +27,7 @@ User.destroy_all
     username: "yipples",
     email: "danielyip90@gmail.com",
     password: "chicken",
-    profile_pic: "https://www.fillmurray.com/400/400"
+    profile_pic: "gnuvzxtdywhzhoe6kqg4"
   )
   u2 = User.create!(
     first_name: "Luke",
@@ -35,7 +35,7 @@ User.destroy_all
     username: "textchimp",
     email: "luke@ga.co",
     password: "chicken",
-    profile_pic: "https://www.fillmurray.com/300/300"
+    profile_pic: "yzqwkaf7fkk51a5zearv"
   )
   u3 = User.create!(
     first_name: "Rowena",
@@ -43,7 +43,7 @@ User.destroy_all
     username: "ro_boat",
     email: "ro@ga.co",
     password: "chicken",
-    profile_pic: "https://www.fillmurray.com/250/250"
+    profile_pic: "vu1dhd708rqjgm1v1zbt"
   )
   u4 = User.create!(
     first_name: "Bill",
@@ -126,7 +126,7 @@ Project.destroy_all
     title: 'Setup the project files',
     description: 'Create a git repo, make the Rails project, initialize the DB.',
     due_date: '2022/01/29  09:00',
-    status: 1,
+    status: 0,
     priority: 1,
     user_id: u1.id,
     project_id: p1.id 
@@ -149,7 +149,7 @@ Project.destroy_all
     title: 'Provide Feedback',
     description: "Tell Dan all the mistake's hes making with his project. Ideally before he makes them.",
     due_date: '2022/02/04',
-    status: 3,
+    status: 2,
     priority: 1,
     user_id: u3.id,
     project_id: p1.id 
@@ -170,7 +170,7 @@ Project.destroy_all
     title: 'Psudo Code',
     description: "Think through the solution and write some psudo code.",
     due_date: '2023/04/10',
-    status: 3,
+    status: 1,
     priority: 1,
     user_id: u1.id,
     project_id: p3.id 
@@ -192,7 +192,7 @@ Project.destroy_all
     title: 'Refactor',
     description: "As the title suggests, refactor the solution for readability",
     due_date: '2025/04/10',
-    status: 2,
+    status: 1,
     priority: 3,
     user_id: u4.id,
     project_id: p3.id 
@@ -203,7 +203,7 @@ Project.destroy_all
     title: 'Enjoy watching TV',
     description: "Binge some tv shows infront of the TV while admiring the furniture",
     due_date: '2022/02/05',
-    status: 2,
+    status: 1,
     priority: 1,
     user_id: u1.id,
     project_id: p4.id 
@@ -236,7 +236,7 @@ Project.destroy_all
     title: 'Music',
     description: "Make a party playlist",
     due_date: '2022/02/04',
-    status: 2,
+    status: 4,
     priority: 3,
     project_id: p5.id 
   )
@@ -246,7 +246,7 @@ Project.destroy_all
     title: 'Pyro',
     description: "Organise a sweet private fireworks show",
     due_date: '2022/02/04',
-    status: 2,
+    status: 4,
     priority: 2,
     project_id: p5.id 
   )

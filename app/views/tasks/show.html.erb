@@ -50,7 +50,7 @@
       </div>
     <% end %>
 
-    <% if @task.due_date%>
+    <% if @task.due_date && @task.status != "Complete" %>
       <div class="due"><strong>Due: </strong><%= @task.how_long_left %></div>
     <% end %>
 

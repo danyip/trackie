@@ -7,7 +7,7 @@
           
           <article>
             <a href="<%= user_path(user.id) %>" class="user-info-box">
-              <%= cl_image_tag user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image large-pic" %>
+              <%= cl_image_tag user.profile_pic, width: 200, height: 200, crop: 'fill', class: "user-image large-pic" %>
               <h4><%= user.first_name%> <%= user.last_name%></h4>
               <p><em><%= user.username %></em></p>
               <div class="proj-count"><strong>Projects: </strong><%= user.projects.count %></div>

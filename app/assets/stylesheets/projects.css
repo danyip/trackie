@@ -98,3 +98,7 @@
   margin: 0 auto;
   width: fit-content;
 }
+
+#project-title-show{
+  font-size: 2rem;
+}
