@@ -50,7 +50,7 @@
 
           <div class="unassigned-task-info">
           <% if task.user.present?%>  
-            <p><strong>Assigned to: </strong> <%= link_to task.user.username, user_path(task.project.user_id) %>
+            <p><strong>Assigned to: </strong> <%= link_to task.user.username, user_path(task.user_id) %>
           <% end %>
             <% if @current_user == task.user || @current_user == task.project.user || task.status == "Unassigned"%>
               <%= link_to 'Edit', edit_task_path(task.id), class: "edit-link" %>
@@ -85,5 +85,4 @@
 </section>
 
 
-      
 
