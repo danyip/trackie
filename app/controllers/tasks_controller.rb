@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find params[:id]
 
-    # redirect_to login_path unless @task.user_id == @current_user.id
+    redirect_to root_path unless @task.user_id == @current_user.id || @task.project.user_id == @current_user.id
 
   end
 
@@ -41,10 +41,10 @@ class TasksController < ApplicationController
 
     @task = Task.find params[:id]
 
-    # if @task.user_id != @current_user.id
-    #   redirect_to login_path
-    #   return 
-    # end 
+    if @task.user_id != @current_user.id || @task.project.user_id == @current_user.id
+      redirect_to login_path
+      return 
+    end 
 
     if @task.update task_params # if the task update is sucessful
         @task.update_task_status # check and update the status

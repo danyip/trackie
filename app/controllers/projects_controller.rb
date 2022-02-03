@@ -39,10 +39,17 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find params[:id]
+
+    redirect_to root_path unless @project.user_id == @current_user.id
   end
 
   def update
     @project = Project.find params[:id]
+
+    if @project.user_id != @current_user.id
+      redirect_to login_path
+      return 
+    end 
     
     if @project.update project_params #If the update is sucessful
       

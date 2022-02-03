@@ -51,6 +51,7 @@ I built the UI to be responsive, the layouts of the views was aided by some wire
 - Make a search function to select users for tasks based on their skills
 - Implement authorization at the controller level
 - Add sorting/filtering to the UI so users can reorganise their projects and tasks
+- Make the UI easier to navigate, maybe another dropdown for new iteem creation
 ## Known Bugs
 
 
