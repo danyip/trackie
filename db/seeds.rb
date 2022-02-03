@@ -114,15 +114,10 @@ Project.destroy_all
   puts "#{Project.pluck(:title).join ', '}".yellow
   puts 
 
-  # p1.users << u1 << u2 << u3 << u4
-  # p2.users << u1
-  # p3.users << u3 << u4 << u1
-  # p4.users << u1
-  # p5.users << u2 << u3 << u4
 
 
+  Task.destroy_all
 # TASK SEEDS
-Task.destroy_all
 
   puts
   print "Creating tasks ...:".red

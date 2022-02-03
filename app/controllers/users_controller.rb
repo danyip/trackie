@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       
     else # if create was unsuscessful, go back to the form
       render :new
+    
     end
 
   end

@@ -2,8 +2,6 @@
   width: fit-content;
   max-width: 800px;
   margin: 0 auto;
-  /* border: 1px solid red; */
-
 }
 
 .error-message {
@@ -13,7 +11,6 @@
 
 .form-wrapper {
   margin: 0 auto;
-  /* border: 1px solid green; */
   width: fit-content;
 }
 
@@ -33,7 +30,13 @@ input[type='submit']{
 
 #add-skill{
   font-size: 0.8rem;
-  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  padding: 0 .5rem;
+  width: fit-content;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
 .skill-dropdown-button {
@@ -42,9 +45,10 @@ input[type='submit']{
   padding: 0 .5rem;
   width: fit-content;
   background-color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
-.skill-dropdown-button:hover {
+.skill-dropdown-button:hover, #add-skill:hover {
   background-color: rgba(0, 0, 0, 0.092);
 }
 

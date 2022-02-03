@@ -36,7 +36,7 @@
         <% end %>
 
         <% if project.due_date%>
-          <div class="due"> <strong>Due:</strong> <%= ((((project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"> <strong>Due: </strong><%= project.how_long_left %></div>
         <% end %>
 
         <% if project.tasks.present?%>
@@ -80,7 +80,7 @@
         <% end %>
 
         <% if task.due_date%>
-          <div class="due"> <strong>Due:</strong> <%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"> <strong>Due: </strong><%= task.how_long_left %></div>
         <% end %>
 
         <div class="status-wrapper">
@@ -94,7 +94,7 @@
 
   </section>
 
-<% else %>
+<% elsif Task.where(user_id: nil).length > 0 %>
 
   <section id="user-tasks">
     <h2>Here's some unassigned tasks</h2>
@@ -123,7 +123,7 @@
         <% end %>
 
         <% if task.due_date%>
-          <div class="due"><strong>Due: </strong><%= ((((task.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"><strong>Due: </strong><%= task.how_long_left %></div>
         <% end %>
 
         <div class="status-wrapper">
@@ -136,7 +136,6 @@
     </div>
 
   </section>
-
 
 <% end %>
 

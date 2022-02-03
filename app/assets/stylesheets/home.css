@@ -10,9 +10,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  /* flex-wrap:wrap; */
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 @media screen and (max-width: 700px) {
@@ -24,7 +22,6 @@
 }
 
 .projects-wrapper, .tasks-wrapper {
-  border: 1px solid hotpink;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -34,7 +31,6 @@
 }
 
 .users-wrapper{
-  border: 1px solid hotpink;
   border-radius: 1.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -189,7 +185,6 @@
 }
 
 .user-info-box {
-  /* border: 1px solid green; */
   border-radius: 4rem;
   min-width: 300px;
   display: grid;
