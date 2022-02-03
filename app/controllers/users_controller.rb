@@ -51,13 +51,17 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find params[:id]
-   
+    redirect_to root_path unless @user.id == @current_user.id
   end
 
   def update
 
-    
     @user = User.find params[:id]
+
+    if @user.id != @current_user.id
+      redirect_to root_path
+      return 
+    end 
 
     if params[:user][:profile_pic].present?
 

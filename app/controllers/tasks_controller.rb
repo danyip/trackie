@@ -41,14 +41,14 @@ class TasksController < ApplicationController
 
     @task = Task.find params[:id]
 
-    if @task.user_id != @current_user.id || @task.project.user_id == @current_user.id
-      redirect_to login_path
+    if @task.user_id != @current_user.id || @task.project.user_id != @current_user.id
+      redirect_to root_path
       return 
     end 
 
     if @task.update task_params # if the task update is sucessful
         @task.update_task_status # check and update the status
-      redirect_to task_path @task # redirect to the task
+      redirect_to project_path @task.project.id # redirect to the task
     else #if update unsucessful
       render :edit # back to the edit page
     end 
