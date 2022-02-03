@@ -16,7 +16,9 @@ class UsersController < ApplicationController
       response = Cloudinary::Uploader.upload params[:user][:profile_pic]
     
       @user.profile_pic = response['public_id']
-
+    
+    else 
+      @user.profile_pic = 'dka6x1jr83kudjfqanbp'
     end
 
     @user.save
@@ -62,7 +64,7 @@ class UsersController < ApplicationController
       response = Cloudinary::Uploader.upload params[:user][:profile_pic]
     
       @user.profile_pic = response['public_id']
-
+  
     end
 
     skills_before_update = Skill.all.ids # grab the list of skills

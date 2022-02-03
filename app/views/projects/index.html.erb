@@ -36,7 +36,7 @@
         <% end %>
 
         <% if project.due_date%>
-          <div class="due"> <strong>Due:</strong> <%= ((((project.due_date - Time.now)/60)/60)/24).round 2  %> days</div>
+          <div class="due"> <strong>Due:</strong> <%= project.how_long_left %></div>
         <% end %>
 
         <% if project.tasks.present?%>

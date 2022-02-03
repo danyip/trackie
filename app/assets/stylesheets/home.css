@@ -234,3 +234,7 @@
   grid-area: date;
   font-size: 0.8rem;
 }
+
+#nothing-home {
+  text-align: center;
+}

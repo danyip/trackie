@@ -137,6 +137,12 @@
 
   </section>
 
+<% else%>
+<section id="nothing-home">
+<h1>Looks like you dont have anything to show!</h1>
+<p>Get started by making a new project.</p>
+<%= link_to 'Make a new project', new_project_path, class: 'new-link', id: "middle" %>
+</section>
 <% end %>
 
 </div>
