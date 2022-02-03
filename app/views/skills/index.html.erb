@@ -3,6 +3,7 @@
 
 <section>
     <h1>All the Skills</h1>
+    <%= link_to 'New Skill', new_skill_path, class: "new-link"%>
       <div class="users-wrapper">
         <% @skills.each do |skill|%>
           <div class="skill-box">

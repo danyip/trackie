@@ -1,0 +1,25 @@
+<div class="form-wrapper">
+
+  <%  if @skill.errors.any? %>
+    <ul>
+    <% @skill.errors.full_messages.each do |e|%>
+    <li class="error-message">
+      <%= e %>
+    </li>
+    <% end %>
+    </ul>
+  <% end%>
+
+  <%= form_with model: @skill, local: true, html: { multipart: true } do |f|  %>
+    
+    <div>
+      <span> Skill </span>
+      <br>
+      <%= f.text_field :skill_type, placeholder: 'skill' %>
+    </div>
+    
+    <%= f.submit  %>
+  <% end %>
+      
+
+</div>

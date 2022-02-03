@@ -8,24 +8,34 @@
     <%= link_to 'Edit', edit_skill_path(@skill.id), class: 'edit-link' %>
     <%= link_to 'Delete', skill_path(@skill.id), method: 'delete', class: 'delete-link' %>
   </div>
-  
+
+  <% if @skill.users.count != 0%>
     <div class="users-wrapper">
-      <% @skill.users.each do |user|%>
-        
-        <article>
-          <a href="<%= user_path(user.id) %>" class="user-info-box">
-            <%= cl_image_tag user.profile_pic, width: 100, height: 100, crop: 'fill', class: "user-image large-pic" %>
-            <h4><%= user.first_name%> <%= user.last_name%></h4>
-            <p><em><%= user.username %></em></p>
-            <div class="proj-count"><strong>Projects: </strong><%= user.projects.count %></div>
-            <div class="task-count"><strong>Tasks: </strong><%= user.tasks.count %></div>
-            <div class="join-date"><strong>Joined: </strong><%= user.created_at.strftime("%b %Y") %></div>
 
-          </a>
-        </article>
+        <% @skill.users.each do |user|%>
+          
+          <article>
+            <a href="<%= user_path(user.id) %>" class="user-info-box">
+              <%= cl_image_tag user.profile_pic, width: 200, height: 200, crop: 'fill', class: "user-image large-pic" %>
+              <h4><%= user.first_name%> <%= user.last_name%></h4>
+              <p><em><%= user.username %></em></p>
+              <div class="proj-count"><strong>Projects: </strong><%= user.projects.count %></div>
+              <div class="task-count"><strong>Tasks: </strong><%= user.tasks.count %></div>
+              <div class="join-date"><strong>Joined: </strong><%= user.created_at.strftime("%b %Y") %></div>
 
-      <% end %>
+            </a>
+          </article>
+
+        <% end %>
     </div>
+      <% else %>
+    <div id="middle">
+      <h3>Edit your profile to claim this skill!</h3>
+      <%= link_to 'Profile', edit_user_path(@current_user), class: "new-link" %>
+    
+    </div>
+
+    <% end %>
 </section>
 
 

@@ -76,7 +76,19 @@
         </div>
           <div id="add-skill">+ another skill</div>
     </div>
-    <%= f.submit  %>
+    <br>
+    
+
+    <% if @current_user.present? %>
+    <%= f.submit("Update Profile")  %>
+    <% else %>
+    <%= f.submit("Create Account")  %>
+    <% end %>
+
+
+
+
+
   <% end %>
       
 

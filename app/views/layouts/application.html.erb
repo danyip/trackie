@@ -39,7 +39,7 @@
           <div class="dropdown" id="current-user-nav">
             
             <% if @current_user.profile_pic.present?%>
-              <%= cl_image_tag @current_user.profile_pic, width: 100, height: 100, crop: 'fill', class: 'user-image med-pic dropdown-button' %>
+              <%= cl_image_tag @current_user.profile_pic, width: 200, height: 200, crop: 'fill', class: 'user-image med-pic dropdown-button' %>
             <% else%>
               <span class="dropdown-button"><%= @current_user.username %></span>
             <% end %>

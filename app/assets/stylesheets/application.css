@@ -25,12 +25,6 @@
   box-sizing: border-box;
 }
 
-/* @media screen and (min-width: 800px) {
-  :root{
-    --main-width: 800px;
-  }
-} */
-
 
 body, html {
   margin: 0;
