@@ -3,9 +3,23 @@ class TasksController < ApplicationController
   before_action :check_if_logged_in
 
   def new
+    @task = Task.new
   end
 
   def create
+
+    @task = Task.create task_params
+
+    if @task.persisted?
+      @task.update_task_status
+      redirect_to task_path @task.id #redirect to the home page 
+
+    else # if create was unsuscessful, go back to the form
+
+      render :new
+    
+    end
+
   end
 
   def index

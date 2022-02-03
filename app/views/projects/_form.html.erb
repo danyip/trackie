@@ -1,103 +1,94 @@
+<div class="form-wrapper">
 
-<%  if @project.errors.any? %>
-  <ul>
-  <% @project.errors.full_messages.each do |e|%>
-  <li>
-    <%= e %>
-  </li>
-  <% end %>
-  </ul>
+  <%  if @project.errors.any? %>
+    <ul>
+      <% @project.errors.full_messages.each do |e|%>
+        <li class="error-message">
+          <%= e %>
+        </li>
+      <% end %>
+    </ul>
+  <% end%>
 
-<% end%>
+  <%= form_with model: @project, local: true do|f| %>
+    <div>
+      <span>Title</span>
+      <br>
+      <%= f.text_field :title, placeholder: 'title' %>
+    </div>
+    <div>
+      <span>Description</span>
+      <br>
+      <%= f.text_area :description, placeholder: 'description', class: 'text-area' %>
+    </div>
+    <div>
+      <span>Due date</span>
+      <br>
+      <%= f.datetime_local_field :due_date%>
+    </div>
+    <div>
+      <span>Priority</span>
+      <%= f.collection_select :priority, Task.priorities.keys, :to_s , :to_s, include_blank: true %>
+    </div>
+    <div>
+      <span>Assigned to</span>
+      <%= f.collection_select :user_id, User.all, :id, :username, include_blank: true %>
+    </div>
 
-<%=form_with model: @project, local: true do |f| %>
-  
-  <article class="project-box">
-        
-    <div class="title"><h3><%= f.text_field :title, placeholder: 'title' %></h3></div>
+    <p>Create a new task</p>
+    <div class="dropdown">
 
-    <div class="project-description"><p><%= f.text_field :description, placeholder: 'description' %></p></div>
+      <div class="dropdown-button">Task</div>
 
-      <div class="priority-wrapper">
-        <%= f.collection_select :priority, Project.priorities.keys, :to_s, :to_s, include_blank: true%>
-      </div>
-
-      <div class="due"><%= f.datetime_local_field :due_date%></div>
-
-      <div class="user"><%= f.collection_select :user_id, User.all, :id, :username %></div>
-
-  </article>
-
-
-  <div>
-    <h4>Create a new task</h4>
-
-    <%= f.fields_for :tasks, Task.new do |t|  %>
-      <div>
-        <%= t.label :title %>
-        <%= t.text_field :title %>
-      </div>
-      <div>
-        <%= t.label :user_id %>
-        <%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %>
-      </div>
-      <div>
-        <%= t.label :description %>
-        <%= t.text_area :description %>
-      </div>
-      <div>
-        <%= t.label :due_date %>
-        <%= t.datetime_local_field :due_date %>
-      </div>
-      <div>
-        <%= t.label :status %>
-        <% Task.statuses.keys.each do |s| %>
-          <%= t.radio_button :status, s %>
-          <%= t.label :status, s, :value => s %>
-        <% end %>
-      </div>
-      <div>
-        <%= t.label :priority %>
-        <% Task.priorities.keys.each do |s| %>
-          <%= t.radio_button :priority, s %>
-          <%= t.label :priority, s, :value => s %>
-        <% end %>
-      </div>
-
-
-    <article class="project-box">
-        
-      <div class="title">
-        <h3><%= t.text_field :title %></h3>
-        <p><%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %></p>
-        
-      </div>
-
-      <div class="project-description"><p><%= t.text_area :description %></p></div>
-      
-      
-        <div class="priority-wrapper">
-          <div class="priority"><%= t.collection_select :priority, Task.priorities.keys, :to_s, :to_s, include_blank: true%></div>
+      <div class="dropdown-menu" id="main-nav-menu">
+        <div class="new-task-in-project">
+          <%= f.fields_for :tasks, Task.new do |t|  %>
+            <div>
+              <span>Title</span>
+              <br>
+              <%= t.text_field :title, placeholder: 'title' %>
+            </div>
+            <div>
+              <span>Description</span>
+              <br>
+              <%= t.text_area :description, placeholder: 'description', class: 'text-area' %>
+            </div>
+            <div>
+              <span>Due date</span>
+              <br>
+              <%= t.datetime_local_field :due_date%>
+            </div>
+            <div>
+              <span>Status</span>
+              <%= t.collection_select :status, Task.statuses.keys[0..2], :to_s , :to_s, include_blank: true %>
+            </div>
+            <div>
+              <span>Priority</span>
+              <%= t.collection_select :priority, Task.priorities.keys, :to_s , :to_s, include_blank: true %>
+            </div>
+            <div>
+              <span>Assigned to</span>
+              <%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %>
+            </div>
+          <% end %>
         </div>
+
+      </div>
+
+    </div>
     
-
       
-        <div class="due"><%= t.datetime_local_field :due_date %></div>
-      
+    <%= f.submit %>
 
+  <% end %>
 
-    </article>
-
-    <% end %>
-
+</div>
 
 
 
-  </div>
-
-
-  <%= f.submit %>
 
 
 
-<% end %>
+
+
+

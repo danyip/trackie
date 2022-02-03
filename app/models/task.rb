@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   belongs_to :user, optional: true
 
   validates :title, length: {minimum: 2}
+  validates :project, presence: true
 
   enum status: [:Complete, :"In Progress", :"On Hold", :Assigned, :Unassigned ]
   enum priority: [:Urgent, :High, :Medium, :Low]

@@ -1,5 +1,9 @@
-.field_with_errors input {
-  background-color: red;
+.field_with_errors {
+  width:fit-content;
+  outline: 3px solid rgba(255, 0, 0, 0.564);
+  padding: .125rem;
+  padding-top: 0;
+  border-radius: .125rem;
 }
 
 #home-wrapper, #index-wrapper   {
@@ -195,7 +199,7 @@
   "image date"
   "image . "
   "image projects"
-  "image tasks"
+  "image count"
   ;
   grid-template-columns: 8rem auto ;
 }
@@ -227,8 +231,8 @@
   grid-area: projects;
   font-size: 0.8rem;
 }
-.task-count {
-  grid-area: tasks;
+.user-info-box .task-count {
+  /* grid-area: tasks; */
   font-size: 0.8rem;
 }
 .join-date {

@@ -12,11 +12,9 @@ class Project < ApplicationRecord
 
   # Calculates and returns a percentage based on how many tasks are complete
   def calc_project_completion
-
       num_all_tasks = tasks.count.to_f
       num_complete_tasks = tasks.where(status: "Complete").count.to_f
       ((num_complete_tasks / num_all_tasks)*100).round
-    
   end
-  
+
 end

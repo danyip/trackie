@@ -2,6 +2,7 @@
 
   <section>
     <h1>All the Tasks</h1>
+    <%= link_to 'Make a new task', new_task_path, class: 'new-link' %>
 
     <div class="projects-wrapper">
     
@@ -10,7 +11,14 @@
       <article class="project-box">
         
         <div class="title">
-        <h3><%= link_to task.title, task_path(task.id) %></h3> 
+        <h3>
+        <% if task.user.present? %>
+        
+        <%= link_to cl_image_tag(task.user.profile_pic, width: 100, height: 100,crop: "fill", class: "user-image small-pic"), user_path(task.user.id), title: "#{task.user.username}" %>
+          
+        <% end %>
+
+        <%= link_to task.title, task_path(task.id) %></h3> 
         <strong>Project: </strong> <%= link_to task.project.title, project_path(task.project.id) %></p>
         <p><strong>Owner: </strong> <%= link_to task.project.user.username, user_path(task.project.user_id) %></p></div>
 

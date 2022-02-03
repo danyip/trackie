@@ -1,45 +1,50 @@
+<div class="form-wrapper">
+
+<%  if @task.errors.any? %>
+    <ul>
+    <% @task.errors.full_messages.each do |e|%>
+    <li class="error-message">
+      <%= e %>
+    </li>
+    <% end %>
+    </ul>
+  <% end%>
 
 <%= form_with model: @task, local: true do|f| %>
 
   <div>
-    <%= f.label :title %>
+    <span>Title</span>
+    <br>
     <%= f.text_field :title, placeholder: 'title' %>
   </div>
   <div>
-    <%= f.label :description %>
-    <%= f.text_area :description, placeholder: 'description' %>
+    <span>Description</span>
+    <br>
+    <%= f.text_area :description, placeholder: 'description', class: 'text-area' %>
   </div>
   <div>
-    <%= f.label :duration %>
-    <%= f.number_field :duration%>
-  </div>
-  <div>
-    <%= f.label :due_date %>
+    <span>Due date</span>
+    <br>
     <%= f.datetime_local_field :due_date%>
   </div>
   <div>
-    <%= f.label :status %>
-    <% Task.statuses.keys.each do |s| %>
-      <%= f.radio_button :status, s %>
-      <%= f.label :status, s, :value => s %>
-    <% end %>
+    <span>Status</span>
+    <%= f.collection_select :status, Task.statuses.keys[0..2], :to_s , :to_s, include_blank: true %>
   </div>
   <div>
-    <%= f.label :priority %>
-    <% Task.priorities.keys.each do |s| %>
-      <%= f.radio_button :priority, s %>
-      <%= f.label :priority, s, :value => s %>
-    <% end %>
+    <span>Priority</span>
+    <%= f.collection_select :priority, Task.priorities.keys, :to_s , :to_s, include_blank: true %>
   </div>
   <div>
-    <%= f.label :project_id %>
+    <span>Project</span>
     <%= f.collection_select :project_id, Project.all, :id, :title %>
   </div>
   <div>
-    <%= f.label :user_id %>
+    <span>Assigned to</span>
     <%= f.collection_select :user_id, User.all, :id, :username, include_blank: true %>
   </div>
 
   <%= f.submit %>
 
 <% end %>
+</div>

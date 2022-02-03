@@ -30,7 +30,7 @@ class UsersController < ApplicationController
         @user.skills << skills # push to join table
       end
 
-      redirect_to user_path @user.id #redirect to the users show page 
+      redirect_to root_path #redirect to the home page 
       
     else # if create was unsuscessful, go back to the form
       render :new

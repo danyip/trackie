@@ -1,70 +1,84 @@
-<%  if @user.errors.any? %>
-  <ul>
-  <% @user.errors.full_messages.each do |e|%>
-  <li>
-    <%= e %>
-  </li>
-  <% end %>
-  </ul>
 
-<% end%>
 
-<%= form_with model: @user, local: true, html: { multipart: true } do |f|  %>
-  
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, placeholder: 'first name' %>
-  </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, placeholder: 'last name' %>
-  </div>
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, placeholder: 'username' %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.text_field :email, placeholder: 'email' %>
-  </div>
-  <div>
-    <%= f.label :profile_pic %>
-    <%= f.file_field :profile_pic%>
-  </div>
-  
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password_confirmation %>
-  </div>
+<div class="form-wrapper">
 
-  <div>
-  Select some skills: <br>
-    <%= f.collection_check_boxes(:skills, Skill.all, :id, :skill_type, include_hidden: false) do |b| %>
-      <%= b.check_box(checked: @user.skills.ids.include?(b.value)) %>
-      <%= b.label%> 
+  <%  if @user.errors.any? %>
+    <ul>
+    <% @user.errors.full_messages.each do |e|%>
+    <li class="error-message">
+      <%= e %>
+    </li>
     <% end %>
-  </div>
-  <br>
-  
-  <div>
-  Make a new one:
-    <%= f.fields_for :skills, Skill.new do |s| %>
-      <div id="fieldset-container">
-        <fieldset id="0">
-          <%= s.text_field :skill_type, placeholder: "new skill" %>
-    <% end %>
-        </fieldset>
+    </ul>
+  <% end%>
+
+  <%= form_with model: @user, local: true, html: { multipart: true } do |f|  %>
+    
+    <div>
+      <span> First name </span>
+      <br>
+      <%= f.text_field :first_name, placeholder: 'first name' %>
+    </div>
+    <div>
+      <span> Last name </span>
+      <br>
+      <%= f.text_field :last_name, placeholder: 'last name' %>
+    </div>
+    <div>
+      <span> Username </span>
+      <br>
+      <%= f.text_field :username, placeholder: 'username' %>
+    </div>
+    <div>
+      <span> Email </span>
+      <br>
+      <%= f.text_field :email, placeholder: 'email' %>
+    </div>
+    <div>
+      <span> Profile Picture </span>
+      <br>
+      <%= f.file_field :profile_pic%>
+    </div>
+    <div>
+      <span> Password </span>
+      <br>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <span> Confirm Password </span>
+      <br>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+
+    <div class="dropdown" id="skills-dropdown">
+      <span>Select some skills</span>
+      <div class="dropdown-button skill-dropdown-button">Skill List</div>
+
+      <div class="dropdown-menu" id="skill-menu">
+        <div class="skill-checkbox-box">
+          <%= f.collection_check_boxes(:skills, Skill.order('skill_type'), :id, :skill_type, include_hidden: false) do |b| %>
+            <%= b.check_box(checked: @user.skills.ids.include?(b.value)) %>
+            <%= b.label%> 
+          <% end %>
+        </div>
       </div>
-        <div id="add-skill">Another one!</div>
-  </div>
-  <br>
-  <%= f.submit  %>
-<% end %>
+    </div>
+
+    <div>
+    <span>Add a new skill</span>
+      <%= f.fields_for :skills, Skill.new do |s| %>
+        <div id="fieldset-container">
+          <div id="0">
+            <%= s.text_field :skill_type, placeholder: "new skill" %>
+      <% end %>
+          </div>
+        </div>
+          <div id="add-skill">+ another skill</div>
+    </div>
+    <%= f.submit  %>
+  <% end %>
       
 
-
+</div>
 

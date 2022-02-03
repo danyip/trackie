@@ -37,10 +37,22 @@
   gap: 0.25rem;
 }
 
-#user-projects, #user-tasks{
+#user-projects-dropdown, #user-tasks-dropdown{
   background-color: white;
 }
 
-#user-projects:hover, #user-tasks:hover{
+#user-projects-dropdown:hover, #user-tasks-dropdown:hover{
   background-color: rgba(0, 0, 0, 0.051);
+}
+
+.skill-checkbox-box{
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  row-gap: 0.25rem;
+  /* flex-wrap: wrap; */
+}
+
+label{
+  font-weight: bold;
 }
