@@ -35,49 +35,49 @@
       <%= f.collection_select :user_id, User.all, :id, :username, include_blank: true %>
     </div>
 
-    <p>Create a new task</p>
-    <div class="dropdown">
-
-      <div class="dropdown-button">Task</div>
-
-      <div class="dropdown-menu" id="main-nav-menu">
-        <div class="new-task-in-project">
-          <%= f.fields_for :tasks, Task.new do |t|  %>
-            <div>
-              <span>Title</span>
-              <br>
-              <%= t.text_field :title, placeholder: 'title' %>
+    <strong>Make a task?</strong>
+<%= f.fields_for :tasks, Task.new do |t|  %>
+      <div id="fieldset-container">
+        <div id="0">
+          <div class="dropdown">
+            <div class="dropdown-button edit-link">Task</div>
+            <div class="dropdown-menu" id="main-nav-menu">
+              <div class="new-task-in-project">
+                <div>
+                  <span>Title</span>
+                  <br>
+                  <%= t.text_field :title, placeholder: 'title' %>
+                </div>
+                <div>
+                  <span>Description</span>
+                  <br>
+                  <%= t.text_area :description, placeholder: 'description', class: 'text-area' %>
+                </div>
+                <div>
+                  <span>Due date</span>
+                  <br>
+                  <%= t.datetime_local_field :due_date%>
+                </div>
+                <div>
+                  <span>Status</span>
+                  <%= t.collection_select :status, Task.statuses.keys[0..2], :to_s , :to_s, include_blank: true %>
+                </div>
+                <div>
+                  <span>Priority</span>
+                  <%= t.collection_select :priority, Task.priorities.keys, :to_s , :to_s, include_blank: true %>
+                </div>
+                <div>
+                  <span>Assigned to</span>
+                  <%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %>
+                </div>
+              </div>
             </div>
-            <div>
-              <span>Description</span>
-              <br>
-              <%= t.text_area :description, placeholder: 'description', class: 'text-area' %>
-            </div>
-            <div>
-              <span>Due date</span>
-              <br>
-              <%= t.datetime_local_field :due_date%>
-            </div>
-            <div>
-              <span>Status</span>
-              <%= t.collection_select :status, Task.statuses.keys[0..2], :to_s , :to_s, include_blank: true %>
-            </div>
-            <div>
-              <span>Priority</span>
-              <%= t.collection_select :priority, Task.priorities.keys, :to_s , :to_s, include_blank: true %>
-            </div>
-            <div>
-              <span>Assigned to</span>
-              <%= t.collection_select :user_id, User.all, :id, :username, include_blank: true %>
-            </div>
-          <% end %>
         </div>
-
       </div>
-
     </div>
-    
-      
+<% end %>
+
+<div id="add-skill" class="">Add another task</div>
     <%= f.submit %>
 
   <% end %>
