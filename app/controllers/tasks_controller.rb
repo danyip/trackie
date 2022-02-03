@@ -33,7 +33,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find params[:id]
 
-    redirect_to root_path unless @task.user_id == @current_user.id || @task.project.user_id == @current_user.id
+    redirect_to root_path unless @task.user_id == @current_user.id || @task.project.user_id == @current_user.id || @task.status == "Unassigned"
 
   end
 
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
 
     @task = Task.find params[:id]
 
-    if @task.user_id != @current_user.id || @task.project.user_id != @current_user.id
+    if @task.user_id != @current_user.id && @task.status != "Unassigned" || @task.project.user_id != @current_user.id && @task.status != "Unassigned" 
       redirect_to root_path
       return 
     end 
