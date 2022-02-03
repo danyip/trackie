@@ -8,7 +8,16 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create project_params
+
+    @project = Project.new project_params
+
+    if !@project.user_id
+      @project.user_id = @current_user.id
+    end
+
+    @project.save
+
+    # @project = Project.create project_params
 
     if @project.persisted? # if the project creation was sucessful
       
