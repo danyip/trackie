@@ -1,7 +1,7 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-
+  #TODO fix this function to deal with timezones properly :(
   def how_long_left
     
     return unless respond_to? :due_date

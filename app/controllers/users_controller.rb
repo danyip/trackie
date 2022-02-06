@@ -71,6 +71,7 @@ class UsersController < ApplicationController
   
     end
 
+    # DEAL WITH NEW SKILLS FROM NESTED FORM
     skills_before_update = Skill.all.ids # grab the list of skills
 
     if @user.update user_params # if the update is sucessful
