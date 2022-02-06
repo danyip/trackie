@@ -1,6 +1,7 @@
 # Trackie
 
-Trackie my "fisher price" expedition into fullstack development.
+Trackie my "fisher price" expedition into full stack development. Utilizing MVC architecture in Ruby on Rails.
+
 It's a project tracking application that allows users to create, assign and manage their projects and tasks.
 
 Tasks can be given a due date, priority and status; as well as being assigned to a user to complete.
@@ -49,12 +50,12 @@ I built the UI to be responsive, the layouts of the views was aided by some wire
 
 ## Wishlist
 - Make a search function to select users for tasks based on their skills
-- Implement authorization at the controller level
 - Add sorting/filtering to the UI so users can reorganise their projects and tasks
-- Make the UI easier to navigate, maybe another dropdown for new iteem creation
+- Make the UI easier to navigate, maybe another dropdown for new item creation
+- Tidy up the layout, refactor the .erb and .css files.
 ## Known Bugs
-
+- The "Due" calculation doesn't work properly due to issues with timezones...
 
 ## Thoughts about the project
-After just a week learning backend I found this project to be quite challenging. There was a lot of hurdles to overcome to get this one done, but overall I am happy with what I achieved in the week. 
+After just a week learning backend I found this project to be quite challenging. There was a lot of hurdles to overcome to get it done, but overall I am happy with what I achieved in the week. 
 
