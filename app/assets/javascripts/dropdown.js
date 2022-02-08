@@ -1,6 +1,7 @@
 // Add an event listener to the whole page
 document.addEventListener("click", function(e){
   // console.log("click");
+  
   // Boolean for what was clicked. True if its a dropdown
   const isDropdownButton = e.target.matches('.dropdown-button');
   // console.log(isDropdownButton);

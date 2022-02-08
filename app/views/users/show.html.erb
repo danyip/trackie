@@ -1,57 +1,44 @@
 <div class="user-show-wrapper">
-  
   <%= cl_image_tag @user.profile_pic, width: 300, height: 300, crop: 'fill', class: "user-image x-large-pic" %>
-  
   <div class="user-links">
     <% if @current_user == @user%>
-      <%= link_to 'Delete', user_path(@user.id), method: 'delete', class: 'edit-link' %>
-      <%= link_to 'Edit', edit_user_path(@user.id), class: 'delete-link'%>
+      <%= link_to 'Edit', edit_user_path(@user.id), class: 'edit-link'%>
+      <%= link_to 'Delete', user_path(@user.id), method: 'delete', class: 'delete-link' %>
     <% end %>
   </div>
-
   <div class="about-user">
     <h2><%= @user.first_name%> <%= @user.last_name%> </h2>
     <p><strong>Username: </strong> <%= @user.username %></p>
     <p><strong>Email: </strong> <%= @user.email %></p>
     <p> <strong>Skills: </strong><%=@user.skills.pluck(:skill_type).join ", "%></p>
   </div>
-
   <div class="dropdowns">
     <div class="dropdown edit-link" id="user-projects-dropdown">
-              
       <div class="dropdown-button">Projects</div>
-
       <div class="dropdown-menu", id="project-dropdown">
-
         <% if @user.projects.length != 0 %>
           <% @user.projects.order("priority").each do |project| %>
-            <%= link_to project.title, project_path(project.id) %>
-            <br>
+            <div>
+              <%= link_to project.title, project_path(project.id) %>
+            </div>
           <% end %>
         <% else %>
           <%= link_to 'Make a new Project', new_project_path %>
         <% end %>
-
       </div>
-    
     </div>
-
     <% if @user.tasks %>
       <div class="dropdown edit-link" id="user-tasks-dropdown">
-              
-      <div class="dropdown-button">Tasks</div>
-
-      <div class="dropdown-menu", id="tasks-dropdown">
-
-        <% @user.tasks.order("priority").each do |task| %>
-          <%= link_to task.title, task_path(task.id) %>
-          <br>
-        <% end %>
-        
+        <div class="dropdown-button">Tasks</div>
+        <div class="dropdown-menu", id="tasks-dropdown">
+          <% @user.tasks.order("priority").each do |task| %>
+            <div>
+              <%= link_to task.title, task_path(task.id) %>
+            </div>
+          <% end %>
     <% end %>
-
+        </div>
+      </div>
   </div>
-</div>
-</div>
 </div>
 

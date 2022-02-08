@@ -1,5 +1,3 @@
-
-
 <div class="form-wrapper">
 
   <%  if @user.errors.any? %>
@@ -11,50 +9,52 @@
     <% end %>
     </ul>
   <% end%>
-
   <%= form_with model: @user, local: true, html: { multipart: true } do |f|  %>
-    
     <div>
-      <span> First name </span>
-      <br>
-      <%= f.text_field :first_name, placeholder: 'first name' %>
+      <strong> First name </strong>
+      <div>
+        <%= f.text_field :first_name, placeholder: 'first name' %>
+      </div>
     </div>
     <div>
-      <span> Last name </span>
-      <br>
-      <%= f.text_field :last_name, placeholder: 'last name' %>
+      <strong> Last name </strong>
+      <div>
+        <%= f.text_field :last_name, placeholder: 'last name' %>
+      </div>
     </div>
     <div>
-      <span> Username </span>
-      <br>
-      <%= f.text_field :username, placeholder: 'username' %>
+      <strong> Username </strong>
+      <div>
+        <%= f.text_field :username, placeholder: 'username' %>
+      </div>
     </div>
     <div>
-      <span> Email </span>
-      <br>
-      <%= f.text_field :email, placeholder: 'email' %>
+      <strong> Email </strong>
+      <div>
+        <%= f.text_field :email, placeholder: 'email' %>
+      </div>
     </div>
     <div>
-      <span> Profile Picture </span>
-      <br>
-      <%= f.file_field :profile_pic%>
+      <strong> Profile Picture </strong>
+      <div>
+        <%= f.file_field :profile_pic%>
+      </div>
     </div>
     <div>
-      <span> Password </span>
-      <br>
-      <%= f.password_field :password %>
+      <strong> Password </strong>
+      <div>
+        <%= f.password_field :password %>
+      </div>
     </div>
     <div>
-      <span> Confirm Password </span>
-      <br>
-      <%= f.password_field :password_confirmation %>
+      <strong> Confirm Password </strong>
+      <div>
+        <%= f.password_field :password_confirmation %>
+      </div>
     </div>
-
-
     <div class="dropdown" id="skills-dropdown">
-      <span>Select some skills</span>
+      <strong>Select some skills</strong>
       <div class="dropdown-button skill-dropdown-button">Skill List</div>
-
       <div class="dropdown-menu" id="skill-menu">
         <div class="skill-checkbox-box">
           <%= f.collection_check_boxes(:skills, Skill.order('skill_type'), :id, :skill_type, include_hidden: false) do |b| %>
@@ -64,9 +64,8 @@
         </div>
       </div>
     </div>
-
     <div>
-    <span>Add a new skill</span>
+    <strong>Add a new skill</strong>
       <%= f.fields_for :skills, Skill.new do |s| %>
         <div id="fieldset-container">
           <div id="0">
@@ -74,23 +73,13 @@
       <% end %>
           </div>
         </div>
-          <div id="add-skill">+ another skill</div>
+    <div id="add-skill">+ another skill</div>
     </div>
-    <br>
-    
-
     <% if @current_user.present? %>
     <%= f.submit("Update Profile")  %>
     <% else %>
     <%= f.submit("Create Account")  %>
     <% end %>
-
-
-
-
-
   <% end %>
-      
-
 </div>
 
