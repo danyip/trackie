@@ -9,14 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application', defer: true %>
     <%= cloudinary_js_config %>
   </head>
 
   <body>
 
     <header>
-
       <div class="header-wrapper">
         <% if @current_user.present?%>
           <div class="dropdown" id="main-nav">
@@ -68,5 +66,6 @@
     <p>danyip 2021</p> 
     </footer>
 
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>
